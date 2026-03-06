@@ -3,175 +3,206 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Rustic Moon Photo</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet"/>
+<title>Rustic Moon Photo | South Florida Photographer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--ink:#080608;--gold:#c8a45a;--gold2:#e8d4a0;--bone:#f0e8d8;--dim:rgba(240,232,216,.45)}
+:root{--ink:#08070a;--dark:#0f0d12;--gold:#c9a84c;--gold2:#e8d4a0;--bone:#f2e8d8;--dim:rgba(242,232,216,.45)}
 html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--bone);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;cursor:none}
+body{background:var(--ink);color:var(--bone);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none}
 
 /* CURSOR */
-#cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,width .3s,height .3s,background .3s;mix-blend-mode:difference}
-#cur2{position:fixed;width:38px;height:38px;border-radius:50%;border:1px solid rgba(200,164,90,.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease,width .3s,height .3s}
-body:has(a:hover) #cur{width:20px;height:20px}
-body:has(a:hover) #cur2{width:60px;height:60px;border-color:var(--gold)}
+#cur{position:fixed;width:9px;height:9px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .3s,height .3s}
+#cur2{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,168,76,.45);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .11s ease,top .11s ease,width .3s,height .3s}
+body:has(a:hover) #cur{width:18px;height:18px}
+body:has(a:hover) #cur2{width:56px;height:56px;border-color:var(--gold)}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:32px 52px;mix-blend-mode:difference}
-.n-logo{font-family:'Cormorant Garamond',serif;font-size:1.05rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bone);text-decoration:none;font-weight:400}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:30px 60px;display:flex;align-items:center;justify-content:space-between;transition:padding .4s,background .4s,backdrop-filter .4s}
+nav.s{background:rgba(8,7,10,.92);backdrop-filter:blur(14px);padding:18px 60px;border-bottom:1px solid rgba(201,168,76,.1)}
+.n-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-decoration:none}
 .n-links{display:flex;gap:40px;list-style:none}
-.n-links a{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--bone);text-decoration:none;opacity:.7;transition:.3s}
+.n-links a{font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bone);text-decoration:none;opacity:.75;transition:.3s;position:relative}
+.n-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:.35s}
 .n-links a:hover{opacity:1;color:var(--gold)}
+.n-links a:hover::after{width:100%}
 
-/* HERO — full bleed split */
-.hero{height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
-.hero-left{position:relative;overflow:hidden}
-.hero-left img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:kz 20s ease-in-out infinite alternate;filter:brightness(.7) contrast(1.1)}
-@keyframes kz{from{transform:scale(1.06)}to{transform:scale(1)}}
-.hero-right{display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 70px 64px;position:relative;background:var(--ink)}
-.hero-right::before{content:'';position:absolute;top:0;left:0;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(200,164,90,.4),transparent)}
-.hero-year{position:absolute;top:50px;right:40px;font-size:.58rem;letter-spacing:.3em;color:var(--dim);writing-mode:vertical-rl}
-.hero-index{font-family:'Cormorant Garamond',serif;font-size:clamp(6rem,15vw,13rem);font-weight:300;line-height:.85;color:transparent;-webkit-text-stroke:1px rgba(200,164,90,.18);position:absolute;top:40px;left:52px;pointer-events:none;z-index:0;letter-spacing:-.02em}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.4rem);font-weight:300;line-height:1.1;color:var(--bone);position:relative;z-index:1;margin-bottom:28px}
-.hero-title em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:44px;position:relative;z-index:1}
-.hero-cta{display:inline-flex;align-items:center;gap:18px;text-decoration:none;position:relative;z-index:1}
-.hero-cta span{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);transition:.3s}
-.hero-cta-line{width:50px;height:1px;background:var(--gold);transition:width .4s}
-.hero-cta:hover .hero-cta-line{width:90px}
-.hero-scroll{position:absolute;bottom:32px;left:52px;display:flex;align-items:center;gap:12px;z-index:1}
-.hero-scroll span{font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
-.hero-scroll-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+/* ── HERO — split ── */
+.hero{height:100vh;display:grid;grid-template-columns:55% 45%;overflow:hidden}
+.hero-img{position:relative;overflow:hidden}
+.hero-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);animation:kz 22s ease-in-out infinite alternate;filter:brightness(.75)}
+@keyframes kz{from{transform:scale(1.07)}to{transform:scale(1)}}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,7,10,0) 65%,var(--ink) 100%)}
+.hero-text{display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 72px 48px;background:var(--ink);position:relative}
+.hero-ghost{position:absolute;top:38px;left:40px;font-family:'Cormorant Garamond',serif;font-size:11rem;font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.1);pointer-events:none;line-height:1;font-style:italic}
+.hero-eyebrow{font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px;opacity:0;animation:fu .8s .2s forwards}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:300;line-height:1.08;color:var(--bone);margin-bottom:28px;opacity:0;animation:fu .9s .4s forwards}
+.hero-title em{font-style:italic;color:var(--gold2);display:block}
+.hero-sub{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-bottom:46px;opacity:0;animation:fu .8s .6s forwards}
+.hero-actions{display:flex;gap:16px;opacity:0;animation:fu .8s .75s forwards}
+.btn{display:inline-block;text-decoration:none;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;padding:13px 36px;transition:.35s;border:1px solid var(--gold)}
+.btn-fill{background:var(--gold);color:#000}
+.btn-fill:hover{background:transparent;color:var(--gold)}
+.btn-ghost{color:var(--gold);background:transparent}
+.btn-ghost:hover{background:var(--gold);color:#000}
+.hero-scroll{position:absolute;bottom:30px;left:48px;display:flex;align-items:center;gap:10px}
+.hero-scroll span{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+.sdot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* MARQUEE */
-.marquee-wrap{overflow:hidden;border-top:1px solid rgba(200,164,90,.12);border-bottom:1px solid rgba(200,164,90,.12);padding:18px 0;background:#0d0b0e}
-.marquee-track{display:flex;width:max-content;animation:mq 18s linear infinite}
-.marquee-track:hover{animation-play-state:paused}
-.marquee-item{display:flex;align-items:center;gap:28px;padding:0 28px;white-space:nowrap}
-.marquee-item span{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;font-weight:300;color:var(--dim)}
-.marquee-item b{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;padding:16px 0;border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);background:var(--dark)}
+.mq-track{display:flex;width:max-content;animation:mq 20s linear infinite}
+.mq-track:hover{animation-play-state:paused}
+.mq-item{display:flex;align-items:center;gap:24px;padding:0 24px;white-space:nowrap}
+.mq-item span{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;font-weight:300;color:var(--dim)}
+.mq-item i{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;font-style:normal}
 @keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* OBLIQUE SECTION */
-.oblique{position:relative;padding:140px 60px 140px;display:flex;align-items:center;gap:10vw;overflow:hidden}
-.oblique::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,var(--ink) 0%,var(--ink) 52%,#120f14 52%)}
-.obl-img{flex:0 0 38%;position:relative;z-index:1}
-.obl-img img{width:100%;height:560px;object-fit:cover;display:block;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)}
-.obl-img::after{content:'';position:absolute;top:20px;left:-20px;right:20px;bottom:-20px;border:1px solid rgba(200,164,90,.2);clip-path:polygon(8% 0,100% 0,92% 100%,0 100%);z-index:-1}
-.obl-text{flex:1;position:relative;z-index:1}
-.lbl{font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:16px}
-.lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
-.obl-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.6rem);font-weight:300;line-height:1.15;color:var(--bone);margin-bottom:30px}
-.obl-text p{font-size:.8rem;line-height:2;color:rgba(240,232,216,.55);margin-bottom:18px;font-weight:300;max-width:440px}
-.text-link{display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-top:20px}
-.text-link span{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(200,164,90,.3);padding-bottom:3px;transition:.3s}
-.text-link:hover span{border-color:var(--gold)}
+/* ── ABOUT — oblique image + warm copy ── */
+.about{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;align-items:center;padding:100px 60px;gap:80px;overflow:hidden}
+.about-img{position:relative}
+.about-img img{width:100%;height:580px;object-fit:cover;display:block;clip-path:polygon(6% 0,100% 0,94% 100%,0 100%)}
+.about-img::before{content:'';position:absolute;top:18px;left:-18px;right:18px;bottom:-18px;border:1px solid rgba(201,168,76,.22);clip-path:polygon(6% 0,100% 0,94% 100%,0 100%);z-index:-1}
+.about-text .lbl{font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.about-text .lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
+.about-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.8vw,3.4rem);font-weight:300;line-height:1.15;color:var(--bone);margin-bottom:28px}
+.about-text h2 em{font-style:italic;color:var(--gold2)}
+.about-text p{font-size:.78rem;line-height:2;color:var(--dim);margin-bottom:18px;font-weight:300;max-width:460px}
+.arrow-link{display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-top:20px}
+.arrow-link span{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:3px;transition:.3s}
+.arrow-link .al{width:44px;height:1px;background:var(--gold);transition:width .4s}
+.arrow-link:hover .al{width:72px}
 
-/* STACKED CARDS GALLERY */
-.gallery{padding:120px 60px;background:#0a080c}
-.gallery-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:70px}
-.gallery-top h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,5rem);font-weight:300;color:var(--bone);line-height:1}
-.gallery-top h2 em{font-style:italic;color:var(--gold);display:block}
-.gallery-top p{font-size:.72rem;line-height:1.85;color:var(--dim);max-width:260px;text-align:right}
-/* Horizontal drag scroll */
-.cards-viewport{overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.cards-viewport::-webkit-scrollbar{display:none}
-.cards-viewport.dragging{cursor:grabbing}
-.cards-track{display:flex;gap:20px;width:max-content;padding:10px 4px 30px}
-.card{position:relative;flex:0 0 340px;height:480px;overflow:hidden;border-radius:2px}
-.card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease,filter .6s;filter:brightness(.75) saturate(.85)}
-.card:hover img{transform:scale(1.06);filter:brightness(.9) saturate(1)}
-.card-meta{position:absolute;bottom:0;left:0;right:0;padding:28px 24px;background:linear-gradient(transparent,rgba(5,4,8,.9));transform:translateY(8px);transition:.4s}
+/* ── DRAG GALLERY ── */
+.gallery{padding:110px 60px;background:var(--dark)}
+.gallery-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px}
+.gallery-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;color:var(--bone);line-height:1}
+.gallery-head h2 em{font-style:italic;color:var(--gold);display:block}
+.gallery-head p{font-size:.72rem;line-height:1.85;color:var(--dim);max-width:250px;text-align:right}
+.cards-vp{overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none}
+.cards-vp::-webkit-scrollbar{display:none}
+.cards-vp.drag{cursor:grabbing}
+.cards-track{display:flex;gap:18px;width:max-content;padding:8px 4px 32px}
+.card{flex:0 0 320px;height:460px;overflow:hidden;position:relative}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .7s,filter .6s;filter:brightness(.78) saturate(.88)}
+.card:hover img{transform:scale(1.05);filter:brightness(.92) saturate(1)}
+.card-meta{position:absolute;bottom:0;left:0;right:0;padding:26px 22px;background:linear-gradient(transparent,rgba(5,4,8,.88));transform:translateY(6px);transition:.4s}
 .card:hover .card-meta{transform:translateY(0)}
-.card-meta h4{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--bone);margin-bottom:4px}
-.card-meta span{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.card:nth-child(even){margin-top:40px}
-.drag-hint{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:18px;text-align:center}
+.card-meta h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--bone);margin-bottom:4px}
+.card-meta span{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.card:nth-child(even){margin-top:44px}
+.drag-hint{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:16px;text-align:center}
 
-/* BIG QUOTE */
-.bigquote{padding:140px 60px;position:relative;overflow:hidden}
-.bigquote::before{content:'"';position:absolute;top:-80px;left:-20px;font-family:'Cormorant Garamond',serif;font-size:36rem;color:rgba(200,164,90,.035);line-height:1;pointer-events:none;font-style:italic}
-.bigquote-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1}
-.bigquote blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3.5vw,2.8rem);font-weight:300;line-height:1.55;font-style:italic;color:var(--bone);margin-bottom:44px;border-left:2px solid rgba(200,164,90,.35);padding-left:40px}
-.bigquote cite{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);padding-left:40px}
+/* ── MOVING TILES ── */
+.tiles{overflow:hidden;padding:70px 0;border-top:1px solid rgba(201,168,76,.08);border-bottom:1px solid rgba(201,168,76,.08)}
+.tiles-track{display:flex;gap:16px;width:max-content;animation:tl 32s linear infinite}
+.tiles-track:hover{animation-play-state:paused}
+.tile{flex:0 0 270px;height:370px;overflow:hidden;position:relative}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .5s;filter:brightness(.75)}
+.tile:hover img{transform:scale(1.06);filter:brightness(.95)}
+.tile-lbl{position:absolute;bottom:0;left:0;right:0;padding:18px 20px;background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:.4s;transform:translateY(6px)}
+.tile:hover .tile-lbl{opacity:1;transform:none}
+.tile-lbl span{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
+@keyframes tl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* SERVICES — editorial grid */
-.svcs{padding:120px 60px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(200,164,90,.08)}
-.svc-block{background:var(--ink);padding:60px 44px;position:relative;overflow:hidden;transition:.4s}
+/* ── TESTIMONIAL ── */
+.testimonial{padding:130px 60px;text-align:center;position:relative;overflow:hidden}
+.testimonial::before{content:'"';position:absolute;top:-60px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:32rem;color:rgba(201,168,76,.04);line-height:1;pointer-events:none}
+.testimonial-inner{max-width:860px;margin:0 auto;position:relative;z-index:1}
+.gold-bar{width:48px;height:1px;background:var(--gold);margin:0 auto 48px}
+.testimonial-inner blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.4rem);font-weight:300;font-style:italic;line-height:1.6;color:var(--bone);margin-bottom:36px}
+.testimonial-inner cite{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+
+/* ── SERVICES — editorial grid ── */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(201,168,76,.07)}
+.svc-block{background:var(--ink);padding:60px 44px;position:relative;overflow:hidden;transition:background .4s}
 .svc-block::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .5s}
+.svc-block:hover{background:#110e15}
 .svc-block:hover::after{width:100%}
-.svc-block:hover{background:#0f0c12}
-.svc-n{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(200,164,90,.1);line-height:1;margin-bottom:24px;transition:.4s}
-.svc-block:hover .svc-n{color:rgba(200,164,90,.22)}
-.svc-block h3{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;color:var(--bone);margin-bottom:14px}
+.svc-n{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(201,168,76,.1);line-height:1;margin-bottom:22px;transition:.4s}
+.svc-block:hover .svc-n{color:rgba(201,168,76,.25)}
+.svc-block h3{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:300;color:var(--bone);margin-bottom:14px}
 .svc-block p{font-size:.72rem;line-height:1.9;color:var(--dim)}
 
-/* FILM STRIP */
-.filmstrip{padding:60px 0;overflow:hidden;position:relative;background:#080608}
-.filmstrip::before,.filmstrip::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
-.filmstrip::before{left:0;background:linear-gradient(to right,#080608,transparent)}
-.filmstrip::after{right:0;background:linear-gradient(to left,#080608,transparent)}
-.fs-track{display:flex;gap:6px;width:max-content;animation:fs 30s linear infinite}
-.fs-track:hover{animation-play-state:paused}
-.fs-img{width:200px;height:280px;overflow:hidden;flex-shrink:0;position:relative}
-.fs-img::before,.fs-img::after{content:'';position:absolute;left:0;right:0;height:16px;z-index:1;background:repeating-linear-gradient(90deg,transparent 0,transparent 14px,#080608 14px,#080608 20px)}
-.fs-img::before{top:0}
-.fs-img::after{bottom:0}
-.fs-img img{width:100%;height:100%;object-fit:cover;filter:sepia(.15) contrast(1.05)}
-@keyframes fs{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* LOCATION */
-.location{padding:130px 60px;display:grid;grid-template-columns:1fr 1.2fr;gap:100px;align-items:center;background:#0a080c}
-.loc-text .lbl{margin-bottom:28px}
-.loc-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4.5vw,4rem);font-weight:300;color:var(--bone);line-height:1.1;margin-bottom:36px}
-.loc-text h2 em{font-style:italic;color:var(--gold)}
-.loc-text p{font-size:.78rem;line-height:2;color:var(--dim);margin-bottom:38px;max-width:420px}
-.loc-img{position:relative}
-.loc-img img{width:100%;height:620px;object-fit:cover;display:block;filter:brightness(.8) contrast(1.05)}
-.loc-tag{position:absolute;bottom:36px;right:-24px;background:var(--gold);color:#000;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;padding:14px 22px;font-weight:500;writing-mode:vertical-rl}
-
-/* CONTACT */
-.contact{padding:160px 60px;text-align:center;position:relative;overflow:hidden}
-.contact-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(8rem,20vw,18rem);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(200,164,90,.06);white-space:nowrap;pointer-events:none;letter-spacing:-.03em;font-style:italic}
-.contact-inner{position:relative;z-index:1}
-.contact-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;color:var(--bone);line-height:1.05;margin-bottom:20px}
-.contact-inner h2 em{font-style:italic;color:var(--gold)}
-.contact-inner p{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:56px}
-.big-btn{display:inline-block;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.5rem);font-style:italic;font-weight:300;color:var(--bone);border:1px solid rgba(200,164,90,.35);padding:22px 64px;letter-spacing:.06em;transition:.4s;position:relative;overflow:hidden}
+/* ── CTA BAND ── */
+.cta{position:relative;overflow:hidden;height:72vh;display:flex;align-items:center;justify-content:center;text-align:center}
+.cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1800&q=80') center/cover;animation:kz 28s ease-in-out infinite alternate;filter:brightness(.38)}
+.cta-content{position:relative;z-index:2}
+.cta-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:16px}
+.cta-content h2 em{font-style:italic;color:var(--gold2)}
+.cta-content p{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:50px}
+.big-btn{display:inline-block;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--bone);border:1px solid rgba(201,168,76,.4);padding:20px 58px;letter-spacing:.06em;transition:.4s;position:relative;overflow:hidden}
 .big-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.4s;z-index:-1}
 .big-btn:hover{color:#000;border-color:var(--gold)}
 .big-btn:hover::before{transform:scaleX(1)}
 
-/* FOOTER */
-footer{padding:60px 52px 36px;border-top:1px solid rgba(200,164,90,.1);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px}
-.f-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-.f-mid{display:flex;gap:36px}
-.f-mid a{text-decoration:none;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);transition:.3s}
-.f-mid a:hover{color:var(--gold)}
-.f-copy{font-size:.6rem;letter-spacing:.1em;color:rgba(240,232,216,.25)}
+/* ── FILM STRIP ── */
+.filmstrip{overflow:hidden;position:relative;background:var(--dark);padding:54px 0;border-top:1px solid rgba(201,168,76,.08)}
+.filmstrip::before,.filmstrip::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.filmstrip::before{left:0;background:linear-gradient(to right,var(--dark),transparent)}
+.filmstrip::after{right:0;background:linear-gradient(to left,var(--dark),transparent)}
+.fs-track{display:flex;gap:6px;width:max-content;animation:fs 28s linear infinite}
+.fs-img{width:190px;height:260px;overflow:hidden;flex-shrink:0;position:relative}
+.fs-img::before,.fs-img::after{content:'';position:absolute;left:0;right:0;height:14px;z-index:1;background:repeating-linear-gradient(90deg,transparent 0,transparent 12px,var(--dark) 12px,var(--dark) 18px)}
+.fs-img::before{top:0}
+.fs-img::after{bottom:0}
+.fs-img img{width:100%;height:100%;object-fit:cover;filter:sepia(.12) contrast(1.05)}
+@keyframes fs{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── LOCATION ── */
+.location{padding:120px 60px;display:grid;grid-template-columns:1fr 1.1fr;gap:90px;align-items:center}
+.loc-text .lbl{font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.loc-text .lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
+.loc-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:300;color:var(--bone);line-height:1.12;margin-bottom:30px}
+.loc-text h2 em{font-style:italic;color:var(--gold2)}
+.loc-text p{font-size:.78rem;line-height:2;color:var(--dim);max-width:420px;margin-bottom:36px}
+.loc-img{position:relative}
+.loc-img img{width:100%;height:600px;object-fit:cover;display:block;filter:brightness(.82)}
+.loc-img::before{content:'';position:absolute;inset:-14px -14px 14px 14px;border:1px solid rgba(201,168,76,.2);z-index:-1}
+.loc-badge{position:absolute;bottom:36px;right:-20px;background:var(--gold);color:#000;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;padding:14px 20px;font-weight:500;writing-mode:vertical-rl}
+
+/* ── CONTACT ── */
+.contact{padding:150px 60px;text-align:center;position:relative;overflow:hidden}
+.contact-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(8rem,18vw,17rem);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.055);white-space:nowrap;pointer-events:none;font-style:italic}
+.contact-inner{position:relative;z-index:1}
+.contact-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.8rem);font-weight:300;color:var(--bone);line-height:1.05;margin-bottom:16px}
+.contact-inner h2 em{font-style:italic;color:var(--gold2)}
+.contact-inner p{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:52px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid rgba(201,168,76,.1);padding:64px 60px 38px;background:#060508}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:56px}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);letter-spacing:.12em;display:block;margin-bottom:18px}
+.f-brand p{font-size:.74rem;line-height:1.95;color:var(--dim);max-width:280px}
+.f-col h4{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.f-col ul{list-style:none}
+.f-col li{margin-bottom:12px}
+.f-col a{text-decoration:none;color:var(--dim);font-size:.76rem;transition:.3s}
+.f-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:28px;display:flex;justify-content:space-between}
+.footer-bottom p{font-size:.62rem;color:rgba(242,232,216,.28);letter-spacing:.06em}
 
 /* REVEAL */
-.rv{opacity:0;transform:translateY(40px);transition:opacity 1s,transform 1s}
+.rv{opacity:0;transform:translateY(36px);transition:opacity .95s,transform .95s}
 .rv.in{opacity:1;transform:none}
-.rv.from-left{transform:translateX(-40px)}
-.rv.from-left.in{transform:none}
-.rv.from-right{transform:translateX(40px)}
-.rv.from-right.in{transform:none}
+.rv.fl{transform:translateX(-36px)}
+.rv.fl.in{transform:none}
+.rv.fr{transform:translateX(36px)}
+.rv.fr.in{transform:none}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-
-<div id="cur"></div>
-<div id="cur2"></div>
+<div id="cur"></div><div id="cur2"></div>
 
 <!-- NAV -->
-<nav>
-  <a href="#" class="n-logo">Rustic Moon</a>
+<nav id="nav">
+  <a href="#" class="n-logo">Rustic Moon Photo</a>
   <ul class="n-links">
-    <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -179,54 +210,52 @@ footer{padding:60px 52px 36px;border-top:1px solid rgba(200,164,90,.1);display:f
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=85" alt="">
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=85" alt="Wedding"/>
+    <div class="hero-img-overlay"></div>
   </div>
-  <div class="hero-right">
-    <div class="hero-index">L</div>
-    <div class="hero-year">© 2024 — Lydia Bogachov</div>
-    <h1 class="hero-title">Telling<br>your <em>love</em><br>story.</h1>
-    <p class="hero-sub">South Florida · Available Worldwide</p>
-    <a href="#work" class="hero-cta">
-      <div class="hero-cta-line"></div>
-      <span>View Work</span>
-    </a>
-    <div class="hero-scroll">
-      <div class="hero-scroll-dot"></div>
-      <span>Scroll to explore</span>
+  <div class="hero-text">
+    <div class="hero-ghost">L</div>
+    <div class="hero-eyebrow">South Florida Photographer</div>
+    <h1 class="hero-title">Telling your<br><em>love story</em><br>through imagery</h1>
+    <p class="hero-sub">Treasure Coast · Available Worldwide</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-fill">View Portfolio</a>
+      <a href="#contact" class="btn btn-ghost">Book a Session</a>
     </div>
+    <div class="hero-scroll"><div class="sdot"></div><span>Scroll to explore</span></div>
   </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
-  <div class="marquee-track">
-    <div class="marquee-item"><span>Weddings</span><b></b><span>Elopements</span><b></b><span>Engagements</span><b></b><span>Lifestyle</span><b></b><span>Portraits</span><b></b><span>Maternity</span><b></b><span>Treasure Coast, FL</span><b></b><span>Available Worldwide</span><b></b></div>
-    <div class="marquee-item"><span>Weddings</span><b></b><span>Elopements</span><b></b><span>Engagements</span><b></b><span>Lifestyle</span><b></b><span>Portraits</span><b></b><span>Maternity</span><b></b><span>Treasure Coast, FL</span><b></b><span>Available Worldwide</span><b></b></div>
+  <div class="mq-track">
+    <div class="mq-item"><span>Weddings</span><i></i><span>Elopements</span><i></i><span>Engagements</span><i></i><span>Lifestyle</span><i></i><span>Portraits</span><i></i><span>Maternity</span><i></i><span>Treasure Coast, FL</span><i></i><span>Available Worldwide</span><i></i></div>
+    <div class="mq-item"><span>Weddings</span><i></i><span>Elopements</span><i></i><span>Engagements</span><i></i><span>Lifestyle</span><i></i><span>Portraits</span><i></i><span>Maternity</span><i></i><span>Treasure Coast, FL</span><i></i><span>Available Worldwide</span><i></i></div>
   </div>
 </div>
 
 <!-- ABOUT -->
-<section class="oblique" id="about">
-  <div class="obl-img rv from-left">
-    <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=900&q=85" alt="Lydia">
+<section class="about" id="about">
+  <div class="about-img rv fl">
+    <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=900&q=85" alt="Lydia"/>
   </div>
-  <div class="obl-text rv">
-    <div class="lbl">About the artist</div>
-    <h2>Candid. Cinematic.<br><em style="font-style:italic;color:var(--gold)">Unforgettable.</em></h2>
-    <p>Wedding photos are more than images — they're little time capsules. Heirlooms that connect generations and tell your love story for years to come.</p>
-    <p>Lydia is a lifestyle and wedding photographer based in the Treasure Coast of Florida. Her style is candid and inspiring, with a touch of cinematic flair.</p>
-    <a href="#contact" class="text-link"><span>Book a session</span> <div style="width:40px;height:1px;background:var(--gold)"></div></a>
+  <div class="about-text rv">
+    <div class="lbl">About Lydia</div>
+    <h2>Candid moments,<br><em>cinematic flair</em></h2>
+    <p>Wedding photos are more than just pictures — they're little time capsules that preserve all those precious moments for you to relive and share with loved ones for years to come.</p>
+    <p>Lydia is a lifestyle and wedding photographer based in the Treasure Coast of Florida whose style is candid and inspiring, with a touch of cinematic flair. Available for world travel wherever love may take her.</p>
+    <a href="#contact" class="arrow-link"><span>Book a session</span><div class="al"></div></a>
   </div>
 </section>
 
-<!-- DRAG SCROLL GALLERY -->
+<!-- DRAG GALLERY -->
 <section class="gallery" id="work">
-  <div class="gallery-top rv">
+  <div class="gallery-head rv">
     <h2>Selected<br><em>Work</em></h2>
     <p>Every frame is a chapter. Every image, a memory that lasts a lifetime.</p>
   </div>
-  <div class="cards-viewport" id="cardsvp">
+  <div class="cards-vp" id="cvp">
     <div class="cards-track">
       <div class="card"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80" alt=""><div class="card-meta"><h4>The Fords</h4><span>Wedding · 2024</span></div></div>
       <div class="card"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80" alt=""><div class="card-meta"><h4>Garden Elopement</h4><span>Elopement · 2024</span></div></div>
@@ -240,11 +269,60 @@ footer{padding:60px 52px 36px;border-top:1px solid rgba(200,164,90,.1);display:f
   <p class="drag-hint rv">← Drag to explore →</p>
 </section>
 
-<!-- BIG QUOTE -->
-<section class="bigquote rv">
-  <div class="bigquote-inner">
-    <blockquote>"I can't recommend Lydia enough. She is incredibly talented, professional, and surpassed all of our expectations capturing our special day. From the engagement shoot I had zero doubts everything would turn out perfect. And it was."</blockquote>
+<!-- MOVING TILES STRIP -->
+<div class="tiles">
+  <div class="tiles-track">
+    <div class="tile"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=75" alt=""><div class="tile-lbl"><span>Weddings</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=75" alt=""><div class="tile-lbl"><span>Elopements</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=75" alt=""><div class="tile-lbl"><span>Engagements</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=75" alt=""><div class="tile-lbl"><span>Lifestyle</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=75" alt=""><div class="tile-lbl"><span>Portraits</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=75" alt=""><div class="tile-lbl"><span>Family</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=75" alt=""><div class="tile-lbl"><span>Weddings</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=75" alt=""><div class="tile-lbl"><span>Elopements</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=75" alt=""><div class="tile-lbl"><span>Engagements</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=75" alt=""><div class="tile-lbl"><span>Lifestyle</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=75" alt=""><div class="tile-lbl"><span>Portraits</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=75" alt=""><div class="tile-lbl"><span>Family</span></div></div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial rv">
+  <div class="testimonial-inner">
+    <div class="gold-bar"></div>
+    <blockquote>"I can't recommend Lydia enough as a photographer. She is incredibly talented, professional, and surpassed all of our expectations as an artist capturing our special day. From the minute we started our engagement shoot I had zero doubts that everything would turn out perfect. And it was!"</blockquote>
     <cite>— The Fords, Wedding 2024</cite>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="svcs" id="services">
+  <div class="svc-block rv">
+    <div class="svc-n">01</div>
+    <h3>Weddings &amp;<br>Elopements</h3>
+    <p>Full-day coverage capturing every candid tear, every stolen glance, every moment of pure joy. Your complete story, told beautifully.</p>
+  </div>
+  <div class="svc-block rv">
+    <div class="svc-n">02</div>
+    <h3>Engagements &amp;<br>Portraits</h3>
+    <p>Relaxed sessions that reveal who you truly are together. Cinematic, natural, and timeless images you'll treasure forever.</p>
+  </div>
+  <div class="svc-block rv">
+    <div class="svc-n">03</div>
+    <h3>Lifestyle &amp;<br>Maternity</h3>
+    <p>Milestone moments frozen in time. From first bumps to family gatherings, every chapter of life deserves its own beautiful frame.</p>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-content rv">
+    <div style="font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:14px"><span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span>So Much Love<span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span></div>
+    <h2>Your story deserves<br>to be <em>remembered</em></h2>
+    <p>Available worldwide · Treasure Coast, Florida</p>
+    <a href="#contact" class="big-btn">Begin your story</a>
   </div>
 </section>
 
@@ -258,7 +336,6 @@ footer{padding:60px 52px 36px;border-top:1px solid rgba(200,164,90,.1);display:f
     <div class="fs-img"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&q=75" alt=""></div>
     <div class="fs-img"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&q=75" alt=""></div>
     <div class="fs-img"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=400&q=75" alt=""></div>
-    <!-- dupes -->
     <div class="fs-img"><img src="https://images.unsplash.com/photo-1470290378698-263fa7ca0ece?w=400&q=75" alt=""></div>
     <div class="fs-img"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=75" alt=""></div>
     <div class="fs-img"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75" alt=""></div>
@@ -269,61 +346,60 @@ footer{padding:60px 52px 36px;border-top:1px solid rgba(200,164,90,.1);display:f
   </div>
 </div>
 
-<!-- SERVICES -->
-<section class="svcs" id="services">
-  <div class="svc-block rv">
-    <div class="svc-n">01</div>
-    <h3>Weddings &amp;<br>Elopements</h3>
-    <p>Full-day coverage capturing every candid tear, every stolen glance. Your complete story, told beautifully.</p>
-  </div>
-  <div class="svc-block rv">
-    <div class="svc-n">02</div>
-    <h3>Engagements &amp;<br>Portraits</h3>
-    <p>Relaxed sessions that reveal who you truly are together. Cinematic, natural, timeless.</p>
-  </div>
-  <div class="svc-block rv">
-    <div class="svc-n">03</div>
-    <h3>Lifestyle &amp;<br>Maternity</h3>
-    <p>Milestone moments frozen in time. From first bumps to first steps, every chapter deserves its own frame.</p>
-  </div>
-</section>
-
 <!-- LOCATION -->
 <section class="location">
-  <div class="loc-text rv from-left">
+  <div class="loc-text rv fl">
     <div class="lbl">Based in Florida</div>
     <h2>Treasure Coast<br>to the <em>world</em></h2>
-    <p>Available for travel wherever love may take you. From South Florida beaches to European castles — Lydia brings her signature candid cinematic eye to every destination.</p>
-    <a href="#contact" class="text-link"><span>Inquire about travel</span> <div style="width:40px;height:1px;background:var(--gold)"></div></a>
+    <p>Available for travel wherever love may take you. From South Florida beaches to European destinations — Lydia brings her signature candid cinematic eye everywhere.</p>
+    <a href="#contact" class="arrow-link"><span>Inquire about travel</span><div class="al"></div></a>
   </div>
-  <div class="loc-img rv from-right">
-    <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=900&q=85" alt="Florida Wedding">
-    <div class="loc-tag">Est. Florida</div>
+  <div class="loc-img rv fr">
+    <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=900&q=85" alt="Florida Wedding"/>
+    <div class="loc-badge">Est. Florida</div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="contact-bg-text">Let's create</div>
+  <div class="contact-ghost">Let's create</div>
   <div class="contact-inner rv">
-    <div class="lbl" style="justify-content:center;margin-bottom:24px">Get in touch</div>
+    <div style="font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:14px"><span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span>Get in touch<span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span></div>
     <h2>Ready to tell<br>your <em>story?</em></h2>
-    <p>Limited dates available for 2024 &amp; 2025</p>
-    <a href="mailto:hello@rusticmoonphoto.com" class="big-btn">Begin your story</a>
+    <p>Limited dates available for 2025 &amp; 2026</p>
+    <a href="mailto:hello@rusticmoonphoto.com" class="big-btn">Book Lydia</a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="f-logo">Rustic Moon Photo</div>
-  <div class="f-mid">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="https://www.instagram.com/rusticmoonphoto/" target="_blank">Instagram</a>
-    <a href="mailto:hello@rusticmoonphoto.com">Email</a>
+  <div class="footer-grid">
+    <div class="f-brand">
+      <span class="f-logo">Rustic Moon Photo</span>
+      <p>Lydia Bogachov — lifestyle and wedding photographer based in the Treasure Coast of Florida. Candid, inspiring, with a touch of cinematic flair.</p>
+    </div>
+    <div class="f-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Portfolio</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/rusticmoonphoto/" target="_blank">Instagram</a></li>
+        <li><a href="#">Client Galleries</a></li>
+        <li><a href="mailto:hello@rusticmoonphoto.com">Email Lydia</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="f-copy">© 2024 Lydia Bogachov</div>
+  <div class="footer-bottom">
+    <p>© 2024 Lydia Bogachov · Rustic Moon Photo</p>
+    <p style="color:rgba(201,168,76,.4);font-size:.58rem;letter-spacing:.18em">SOUTH FLORIDA PHOTOGRAPHER</p>
+  </div>
 </footer>
 
 <script>
@@ -334,24 +410,18 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.le
 ;(function loop(){cx+=(mx-cx)*.13;cy+=(my-cy)*.13;cur2.style.left=cx+'px';cur2.style.top=cy+'px';requestAnimationFrame(loop)})()
 
 // Nav scroll
-window.addEventListener('scroll',()=>{
-  document.querySelector('nav').style.backdropFilter=scrollY>60?'blur(12px)':''
-  document.querySelector('nav').style.background=scrollY>60?'rgba(8,6,8,.85)':''
-  document.querySelector('nav').style.padding=scrollY>60?'18px 52px':'32px 52px'
-  document.querySelector('nav').style.transition='.4s'
-  document.querySelector('nav').style.mixBlendMode=scrollY>60?'normal':'difference'
-})
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>60))
 
-// Scroll reveal
+// Reveal
 const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('in');obs.unobserve(el.target)}}),{threshold:.1})
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el))
 
-// Drag scroll gallery
-const vp=document.getElementById('cardsvp')
-let down=false,sx=0,sl=0
-vp.addEventListener('mousedown',e=>{down=true;sx=e.pageX;sl=vp.scrollLeft;vp.classList.add('dragging')})
-document.addEventListener('mouseup',()=>{down=false;vp.classList.remove('dragging')})
-document.addEventListener('mousemove',e=>{if(!down)return;e.preventDefault();vp.scrollLeft=sl-(e.pageX-sx)*1.2})
+// Drag gallery
+const vp=document.getElementById('cvp')
+let dn=false,sx=0,sl=0
+vp.addEventListener('mousedown',e=>{dn=true;sx=e.pageX;sl=vp.scrollLeft;vp.classList.add('drag')})
+document.addEventListener('mouseup',()=>{dn=false;vp.classList.remove('drag')})
+document.addEventListener('mousemove',e=>{if(!dn)return;e.preventDefault();vp.scrollLeft=sl-(e.pageX-sx)*1.2})
 </script>
 </body>
 </html>
