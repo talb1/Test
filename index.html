@@ -3,425 +3,482 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Rustic Moon Photo | South Florida Photographer</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+<title>Rustic Moon Photo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--ink:#08070a;--dark:#0f0d12;--gold:#c9a84c;--gold2:#e8d4a0;--bone:#f2e8d8;--dim:rgba(242,232,216,.45)}
-html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--bone);font-family:'Montserrat',sans-serif;overflow-x:hidden;cursor:none}
+:root{
+  --bg:#060508;
+  --surface:#0c0a10;
+  --gold:#b8965a;
+  --gold-light:#d4b47c;
+  --gold-dim:rgba(184,150,90,.18);
+  --white:#fff;
+  --bone:#ede5d8;
+  --muted:rgba(237,229,216,.42);
+  --border:rgba(184,150,90,.14);
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{background:var(--bg);color:var(--bone);font-family:'Inter',sans-serif;overflow-x:hidden;cursor:none}
 
-/* CURSOR */
-#cur{position:fixed;width:9px;height:9px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .3s,height .3s}
-#cur2{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,168,76,.45);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .11s ease,top .11s ease,width .3s,height .3s}
-body:has(a:hover) #cur{width:18px;height:18px}
-body:has(a:hover) #cur2{width:56px;height:56px;border-color:var(--gold)}
+/* ── CURSOR ── */
+#c1{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s}
+#c2{position:fixed;width:32px;height:32px;border:1px solid rgba(184,150,90,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .1s,top .1s,width .3s,height .3s,border-color .3s}
+body:has(a:hover,button:hover) #c1{width:16px;height:16px;background:var(--gold-light)}
+body:has(a:hover,button:hover) #c2{width:52px;height:52px;border-color:var(--gold)}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:30px 60px;display:flex;align-items:center;justify-content:space-between;transition:padding .4s,background .4s,backdrop-filter .4s}
-nav.s{background:rgba(8,7,10,.92);backdrop-filter:blur(14px);padding:18px 60px;border-bottom:1px solid rgba(201,168,76,.1)}
-.n-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);text-decoration:none}
-.n-links{display:flex;gap:40px;list-style:none}
-.n-links a{font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bone);text-decoration:none;opacity:.75;transition:.3s;position:relative}
-.n-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:.35s}
-.n-links a:hover{opacity:1;color:var(--gold)}
-.n-links a:hover::after{width:100%}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:36px 56px;transition:padding .5s,background .5s,backdrop-filter .5s}
+nav.stuck{padding:20px 56px;background:rgba(6,5,8,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Playfair Display',serif;font-size:1.15rem;letter-spacing:.12em;color:var(--gold);text-decoration:none;font-style:italic}
+.nav-r{display:flex;align-items:center;gap:48px}
+.nav-r ul{display:flex;gap:40px;list-style:none}
+.nav-r a{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bone);text-decoration:none;opacity:.6;transition:.3s}
+.nav-r a:hover{opacity:1;color:var(--gold)}
+.nav-book{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:11px 28px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;background:transparent;transition:.35s}
+.nav-book:hover{background:var(--gold);color:#000}
 
-/* ── HERO — split ── */
-.hero{height:100vh;display:grid;grid-template-columns:55% 45%;overflow:hidden}
-.hero-img{position:relative;overflow:hidden}
-.hero-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);animation:kz 22s ease-in-out infinite alternate;filter:brightness(.75)}
-@keyframes kz{from{transform:scale(1.07)}to{transform:scale(1)}}
-.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,7,10,0) 65%,var(--ink) 100%)}
-.hero-text{display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 72px 48px;background:var(--ink);position:relative}
-.hero-ghost{position:absolute;top:38px;left:40px;font-family:'Cormorant Garamond',serif;font-size:11rem;font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.1);pointer-events:none;line-height:1;font-style:italic}
-.hero-eyebrow{font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px;opacity:0;animation:fu .8s .2s forwards}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:300;line-height:1.08;color:var(--bone);margin-bottom:28px;opacity:0;animation:fu .9s .4s forwards}
-.hero-title em{font-style:italic;color:var(--gold2);display:block}
-.hero-sub{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim);margin-bottom:46px;opacity:0;animation:fu .8s .6s forwards}
-.hero-actions{display:flex;gap:16px;opacity:0;animation:fu .8s .75s forwards}
-.btn{display:inline-block;text-decoration:none;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;padding:13px 36px;transition:.35s;border:1px solid var(--gold)}
-.btn-fill{background:var(--gold);color:#000}
-.btn-fill:hover{background:transparent;color:var(--gold)}
-.btn-ghost{color:var(--gold);background:transparent}
-.btn-ghost:hover{background:var(--gold);color:#000}
-.hero-scroll{position:absolute;bottom:30px;left:48px;display:flex;align-items:center;gap:10px}
-.hero-scroll span{font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
-.sdot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2.2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+/* ── PANEL BASE ── */
+.panel{height:100vh;scroll-snap-align:start;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 
-/* ── MARQUEE ── */
-.marquee-wrap{overflow:hidden;padding:16px 0;border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);background:var(--dark)}
-.mq-track{display:flex;width:max-content;animation:mq 20s linear infinite}
-.mq-track:hover{animation-play-state:paused}
-.mq-item{display:flex;align-items:center;gap:24px;padding:0 24px;white-space:nowrap}
-.mq-item span{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;font-weight:300;color:var(--dim)}
-.mq-item i{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0;font-style:normal}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ── HERO ── */
+#hero{display:grid;grid-template-columns:1fr 1fr}
+.hero-media{position:relative;overflow:hidden}
+.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:zoomOut 24s ease-in-out infinite alternate;filter:brightness(.65) contrast(1.08)}
+@keyframes zoomOut{0%{transform:scale(1.08)}100%{transform:scale(1)}}
+.hero-media-fade{position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--bg))}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:0 72px 0 56px;background:var(--bg);position:relative}
+.hero-copy::before{content:'';position:absolute;left:0;top:15%;bottom:15%;width:1px;background:linear-gradient(to bottom,transparent,var(--gold-dim),transparent)}
+.h-pretitle{font-size:.58rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;opacity:0;animation:up .8s .3s forwards}
+.h-title{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,5vw,5rem);font-weight:400;line-height:1.06;color:var(--white);margin-bottom:32px;opacity:0;animation:up .9s .5s forwards}
+.h-title em{font-style:italic;color:var(--gold-light)}
+.h-body{font-size:.78rem;line-height:1.95;color:var(--muted);max-width:400px;margin-bottom:52px;font-weight:300;opacity:0;animation:up .8s .7s forwards}
+.h-actions{display:flex;gap:16px;opacity:0;animation:up .8s .85s forwards}
+.btn-p{display:inline-block;text-decoration:none;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;padding:15px 38px;transition:.35s}
+.bp-fill{background:var(--gold);color:#000;border:1px solid var(--gold)}
+.bp-fill:hover{background:transparent;color:var(--gold)}
+.bp-line{border:1px solid rgba(237,229,216,.25);color:var(--bone)}
+.bp-line:hover{border-color:var(--gold);color:var(--gold)}
+.h-scroll{position:absolute;bottom:40px;left:56px;display:flex;align-items:center;gap:12px;opacity:0;animation:up .8s 1.1s forwards}
+.h-scroll-line{width:40px;height:1px;background:var(--gold);animation:scrollPulse 2s infinite}
+@keyframes scrollPulse{0%,100%{width:40px;opacity:1}50%{width:24px;opacity:.4}}
+.h-scroll span{font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+.hero-counter{position:absolute;bottom:40px;right:56px;font-family:'Playfair Display',serif;font-size:4.5rem;font-weight:400;color:transparent;-webkit-text-stroke:1px rgba(184,150,90,.12);line-height:1;font-style:italic;pointer-events:none}
 
-/* ── ABOUT — oblique image + warm copy ── */
-.about{display:grid;grid-template-columns:1fr 1fr;min-height:88vh;align-items:center;padding:100px 60px;gap:80px;overflow:hidden}
-.about-img{position:relative}
-.about-img img{width:100%;height:580px;object-fit:cover;display:block;clip-path:polygon(6% 0,100% 0,94% 100%,0 100%)}
-.about-img::before{content:'';position:absolute;top:18px;left:-18px;right:18px;bottom:-18px;border:1px solid rgba(201,168,76,.22);clip-path:polygon(6% 0,100% 0,94% 100%,0 100%);z-index:-1}
-.about-text .lbl{font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px}
-.about-text .lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
-.about-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.8vw,3.4rem);font-weight:300;line-height:1.15;color:var(--bone);margin-bottom:28px}
-.about-text h2 em{font-style:italic;color:var(--gold2)}
-.about-text p{font-size:.78rem;line-height:2;color:var(--dim);margin-bottom:18px;font-weight:300;max-width:460px}
-.arrow-link{display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-top:20px}
-.arrow-link span{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:3px;transition:.3s}
-.arrow-link .al{width:44px;height:1px;background:var(--gold);transition:width .4s}
-.arrow-link:hover .al{width:72px}
+/* ── FULLSCREEN PHOTO PANELS ── */
+.photo-panel{scroll-snap-align:start;position:relative;height:100vh;overflow:hidden}
+.photo-panel img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.4s ease}
+.photo-panel.in-view img{transform:scale(1)}
+.photo-panel-overlay{position:absolute;inset:0}
+.ppo-dark{background:linear-gradient(135deg,rgba(6,5,8,.72) 0%,rgba(6,5,8,.2) 50%,rgba(6,5,8,.55) 100%)}
+.ppo-bottom{background:linear-gradient(to top,rgba(6,5,8,.9) 0%,rgba(6,5,8,.1) 50%,transparent 100%)}
+.photo-panel-content{position:absolute;inset:0;display:flex;align-items:flex-end;padding:72px 80px}
+.ppc-inner{max-width:580px}
+.ppc-label{font-size:.58rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.ppc-label::before{content:'';width:22px;height:1px;background:var(--gold)}
+.ppc-inner h2{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:400;line-height:1.08;color:var(--white);margin-bottom:22px}
+.ppc-inner h2 em{font-style:italic;color:var(--gold-light)}
+.ppc-inner p{font-size:.78rem;line-height:1.95;color:rgba(237,229,216,.7);max-width:440px;font-weight:300}
 
-/* ── DRAG GALLERY ── */
-.gallery{padding:110px 60px;background:var(--dark)}
-.gallery-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px}
-.gallery-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;color:var(--bone);line-height:1}
-.gallery-head h2 em{font-style:italic;color:var(--gold);display:block}
-.gallery-head p{font-size:.72rem;line-height:1.85;color:var(--dim);max-width:250px;text-align:right}
-.cards-vp{overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none}
-.cards-vp::-webkit-scrollbar{display:none}
-.cards-vp.drag{cursor:grabbing}
-.cards-track{display:flex;gap:18px;width:max-content;padding:8px 4px 32px}
-.card{flex:0 0 320px;height:460px;overflow:hidden;position:relative}
-.card img{width:100%;height:100%;object-fit:cover;transition:transform .7s,filter .6s;filter:brightness(.78) saturate(.88)}
-.card:hover img{transform:scale(1.05);filter:brightness(.92) saturate(1)}
-.card-meta{position:absolute;bottom:0;left:0;right:0;padding:26px 22px;background:linear-gradient(transparent,rgba(5,4,8,.88));transform:translateY(6px);transition:.4s}
-.card:hover .card-meta{transform:translateY(0)}
-.card-meta h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--bone);margin-bottom:4px}
-.card-meta span{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
-.card:nth-child(even){margin-top:44px}
-.drag-hint{font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-top:16px;text-align:center}
+/* right-aligned variant */
+.photo-panel-content.right{justify-content:flex-end;text-align:right}
+.photo-panel-content.right .ppc-label{justify-content:flex-end;flex-direction:row-reverse}
+.photo-panel-content.right .ppc-label::before{display:none}
+.photo-panel-content.right .ppc-label::after{content:'';width:22px;height:1px;background:var(--gold)}
+
+/* ── TESTIMONIALS PANEL ── */
+#testimonials{background:var(--surface);flex-direction:column;justify-content:center;scroll-snap-align:start}
+.t-header{text-align:center;margin-bottom:72px}
+.t-header span{font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:16px}
+.t-header h2{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4vw,3.5rem);font-weight:400;color:var(--white)}
+.t-header h2 em{font-style:italic;color:var(--gold-light)}
+.t-track-wrap{overflow:hidden;width:100%;position:relative}
+.t-track-wrap::before,.t-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none}
+.t-track-wrap::before{left:0;background:linear-gradient(to right,var(--surface),transparent)}
+.t-track-wrap::after{right:0;background:linear-gradient(to left,var(--surface),transparent)}
+.t-track{display:flex;gap:28px;width:max-content;animation:tscroll 30s linear infinite}
+.t-track:hover{animation-play-state:paused}
+.t-card{flex:0 0 440px;background:rgba(255,255,255,.03);border:1px solid var(--border);padding:44px 40px;position:relative}
+.t-card::before{content:'"';position:absolute;top:18px;right:28px;font-family:'Playfair Display',serif;font-size:5rem;color:var(--gold-dim);line-height:1;font-style:italic}
+.t-card p{font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;line-height:1.7;color:var(--bone);margin-bottom:28px;font-weight:400}
+.t-card-author{display:flex;align-items:center;gap:14px}
+.t-card-author img{width:44px;height:44px;border-radius:50%;object-fit:cover;filter:grayscale(.3)}
+.t-card-author-info span{display:block;font-size:.72rem;font-weight:500;color:var(--white)}
+.t-card-author-info small{font-size:.6rem;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+.t-stars{color:var(--gold);font-size:.7rem;margin-bottom:18px;letter-spacing:3px}
+@keyframes tscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SERVICES PANEL ── */
+#services{background:var(--bg);flex-direction:column;justify-content:center;scroll-snap-align:start}
+.s-inner{width:100%;max-width:1200px;padding:0 80px}
+.s-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px}
+.s-top h2{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4rem);font-weight:400;color:var(--white);line-height:1.05}
+.s-top h2 em{font-style:italic;color:var(--gold-light)}
+.s-top p{font-size:.75rem;line-height:1.9;color:var(--muted);max-width:300px;text-align:right}
+.s-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.s-item{background:var(--surface);padding:48px 40px;position:relative;overflow:hidden;transition:background .4s}
+.s-item:hover{background:#110e16}
+.s-item-line{position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .55s}
+.s-item:hover .s-item-line{width:100%}
+.s-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:400;color:rgba(184,150,90,.1);line-height:1;margin-bottom:20px;transition:.4s;font-style:italic}
+.s-item:hover .s-num{color:rgba(184,150,90,.25)}
+.s-item h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;color:var(--white);margin-bottom:14px}
+.s-item p{font-size:.72rem;line-height:1.9;color:var(--muted)}
+
+/* ── BOOKING PANEL ── */
+#booking{background:var(--bg);scroll-snap-align:start;position:relative;overflow:hidden}
+.booking-bg{position:absolute;inset:0}
+.booking-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.25) saturate(.6)}
+.booking-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(6,5,8,.3) 0%,rgba(6,5,8,.85) 100%)}
+.booking-content{position:relative;z-index:2;text-align:center;padding:0 60px;max-width:800px}
+.b-pretitle{font-size:.58rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:16px}
+.b-pretitle::before,.b-pretitle::after{content:'';width:32px;height:1px;background:var(--gold)}
+.booking-content h2{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,7vw,6rem);font-weight:400;line-height:1.02;color:var(--white);margin-bottom:22px}
+.booking-content h2 em{font-style:italic;color:var(--gold-light)}
+.booking-content p{font-size:.78rem;line-height:1.95;color:rgba(237,229,216,.6);margin-bottom:54px;max-width:480px;margin-left:auto;margin-right:auto;font-weight:300}
+.b-actions{display:flex;gap:16px;justify-content:center}
+.b-avail{margin-top:36px;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(184,150,90,.55)}
 
 /* ── MOVING TILES ── */
-.tiles{overflow:hidden;padding:70px 0;border-top:1px solid rgba(201,168,76,.08);border-bottom:1px solid rgba(201,168,76,.08)}
-.tiles-track{display:flex;gap:16px;width:max-content;animation:tl 32s linear infinite}
-.tiles-track:hover{animation-play-state:paused}
-.tile{flex:0 0 270px;height:370px;overflow:hidden;position:relative}
-.tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .5s;filter:brightness(.75)}
-.tile:hover img{transform:scale(1.06);filter:brightness(.95)}
-.tile-lbl{position:absolute;bottom:0;left:0;right:0;padding:18px 20px;background:linear-gradient(transparent,rgba(0,0,0,.7));opacity:0;transition:.4s;transform:translateY(6px)}
-.tile:hover .tile-lbl{opacity:1;transform:none}
-.tile-lbl span{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2)}
-@keyframes tl{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ── TESTIMONIAL ── */
-.testimonial{padding:130px 60px;text-align:center;position:relative;overflow:hidden}
-.testimonial::before{content:'"';position:absolute;top:-60px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:32rem;color:rgba(201,168,76,.04);line-height:1;pointer-events:none}
-.testimonial-inner{max-width:860px;margin:0 auto;position:relative;z-index:1}
-.gold-bar{width:48px;height:1px;background:var(--gold);margin:0 auto 48px}
-.testimonial-inner blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.4rem);font-weight:300;font-style:italic;line-height:1.6;color:var(--bone);margin-bottom:36px}
-.testimonial-inner cite{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
-
-/* ── SERVICES — editorial grid ── */
-.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(201,168,76,.07)}
-.svc-block{background:var(--ink);padding:60px 44px;position:relative;overflow:hidden;transition:background .4s}
-.svc-block::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .5s}
-.svc-block:hover{background:#110e15}
-.svc-block:hover::after{width:100%}
-.svc-n{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(201,168,76,.1);line-height:1;margin-bottom:22px;transition:.4s}
-.svc-block:hover .svc-n{color:rgba(201,168,76,.25)}
-.svc-block h3{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:300;color:var(--bone);margin-bottom:14px}
-.svc-block p{font-size:.72rem;line-height:1.9;color:var(--dim)}
-
-/* ── CTA BAND ── */
-.cta{position:relative;overflow:hidden;height:72vh;display:flex;align-items:center;justify-content:center;text-align:center}
-.cta-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1800&q=80') center/cover;animation:kz 28s ease-in-out infinite alternate;filter:brightness(.38)}
-.cta-content{position:relative;z-index:2}
-.cta-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;color:#fff;line-height:1.05;margin-bottom:16px}
-.cta-content h2 em{font-style:italic;color:var(--gold2)}
-.cta-content p{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.48);margin-bottom:50px}
-.big-btn{display:inline-block;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--bone);border:1px solid rgba(201,168,76,.4);padding:20px 58px;letter-spacing:.06em;transition:.4s;position:relative;overflow:hidden}
-.big-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.4s;z-index:-1}
-.big-btn:hover{color:#000;border-color:var(--gold)}
-.big-btn:hover::before{transform:scaleX(1)}
-
-/* ── FILM STRIP ── */
-.filmstrip{overflow:hidden;position:relative;background:var(--dark);padding:54px 0;border-top:1px solid rgba(201,168,76,.08)}
-.filmstrip::before,.filmstrip::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
-.filmstrip::before{left:0;background:linear-gradient(to right,var(--dark),transparent)}
-.filmstrip::after{right:0;background:linear-gradient(to left,var(--dark),transparent)}
-.fs-track{display:flex;gap:6px;width:max-content;animation:fs 28s linear infinite}
-.fs-img{width:190px;height:260px;overflow:hidden;flex-shrink:0;position:relative}
-.fs-img::before,.fs-img::after{content:'';position:absolute;left:0;right:0;height:14px;z-index:1;background:repeating-linear-gradient(90deg,transparent 0,transparent 12px,var(--dark) 12px,var(--dark) 18px)}
-.fs-img::before{top:0}
-.fs-img::after{bottom:0}
-.fs-img img{width:100%;height:100%;object-fit:cover;filter:sepia(.12) contrast(1.05)}
-@keyframes fs{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* ── LOCATION ── */
-.location{padding:120px 60px;display:grid;grid-template-columns:1fr 1.1fr;gap:90px;align-items:center}
-.loc-text .lbl{font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:14px}
-.loc-text .lbl::before{content:'';width:24px;height:1px;background:var(--gold)}
-.loc-text h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.8rem);font-weight:300;color:var(--bone);line-height:1.12;margin-bottom:30px}
-.loc-text h2 em{font-style:italic;color:var(--gold2)}
-.loc-text p{font-size:.78rem;line-height:2;color:var(--dim);max-width:420px;margin-bottom:36px}
-.loc-img{position:relative}
-.loc-img img{width:100%;height:600px;object-fit:cover;display:block;filter:brightness(.82)}
-.loc-img::before{content:'';position:absolute;inset:-14px -14px 14px 14px;border:1px solid rgba(201,168,76,.2);z-index:-1}
-.loc-badge{position:absolute;bottom:36px;right:-20px;background:var(--gold);color:#000;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;padding:14px 20px;font-weight:500;writing-mode:vertical-rl}
-
-/* ── CONTACT ── */
-.contact{padding:150px 60px;text-align:center;position:relative;overflow:hidden}
-.contact-ghost{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:clamp(8rem,18vw,17rem);font-weight:300;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.055);white-space:nowrap;pointer-events:none;font-style:italic}
-.contact-inner{position:relative;z-index:1}
-.contact-inner h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.8rem);font-weight:300;color:var(--bone);line-height:1.05;margin-bottom:16px}
-.contact-inner h2 em{font-style:italic;color:var(--gold2)}
-.contact-inner p{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);margin-bottom:52px}
+.tiles-panel{scroll-snap-align:start;height:100vh;background:var(--surface);display:flex;flex-direction:column;justify-content:center;overflow:hidden;gap:14px}
+.tile-row{display:flex;gap:14px;width:max-content}
+.tile-row:nth-child(1){animation:rowL 30s linear infinite}
+.tile-row:nth-child(2){animation:rowR 36s linear infinite}
+.tile-row:hover{animation-play-state:paused}
+.tile{flex:0 0 280px;height:220px;overflow:hidden;position:relative}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s,filter .5s;filter:brightness(.75) saturate(.9)}
+.tile:hover img{transform:scale(1.06);filter:brightness(.95) saturate(1.05)}
+.tile-badge{position:absolute;bottom:0;left:0;right:0;padding:16px 18px;background:linear-gradient(transparent,rgba(0,0,0,.75));opacity:0;transform:translateY(6px);transition:.4s}
+.tile:hover .tile-badge{opacity:1;transform:none}
+.tile-badge span{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light)}
+@keyframes rowL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes rowR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
 /* ── FOOTER ── */
-footer{border-top:1px solid rgba(201,168,76,.1);padding:64px 60px 38px;background:#060508}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:56px}
-.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);letter-spacing:.12em;display:block;margin-bottom:18px}
-.f-brand p{font-size:.74rem;line-height:1.95;color:var(--dim);max-width:280px}
-.f-col h4{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+footer{scroll-snap-align:start;min-height:100vh;background:#040306;display:flex;flex-direction:column;justify-content:space-between;padding:100px 80px 52px}
+.f-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:60px;margin-bottom:80px}
+.f-brand .f-logo{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold);font-style:italic;display:block;margin-bottom:22px}
+.f-brand p{font-size:.74rem;line-height:2;color:var(--muted);max-width:280px}
+.f-brand .f-ig{display:inline-flex;align-items:center;gap:10px;margin-top:28px;text-decoration:none;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--border);padding-bottom:6px;transition:.3s}
+.f-brand .f-ig:hover{border-color:var(--gold)}
+.f-col h4{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px}
 .f-col ul{list-style:none}
-.f-col li{margin-bottom:12px}
-.f-col a{text-decoration:none;color:var(--dim);font-size:.76rem;transition:.3s}
+.f-col li{margin-bottom:13px}
+.f-col a{text-decoration:none;color:var(--muted);font-size:.76rem;transition:.3s;font-weight:300}
 .f-col a:hover{color:var(--gold)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:28px;display:flex;justify-content:space-between}
-.footer-bottom p{font-size:.62rem;color:rgba(242,232,216,.28);letter-spacing:.06em}
+.f-bottom{border-top:1px solid var(--border);padding-top:28px;display:flex;justify-content:space-between;align-items:center}
+.f-bottom p{font-size:.62rem;color:rgba(237,229,216,.22);letter-spacing:.06em}
+.f-bottom-right{display:flex;gap:24px}
+.f-bottom-right a{font-size:.6rem;color:rgba(237,229,216,.22);text-decoration:none;letter-spacing:.08em;transition:.3s}
+.f-bottom-right a:hover{color:var(--gold)}
 
-/* REVEAL */
-.rv{opacity:0;transform:translateY(36px);transition:opacity .95s,transform .95s}
+/* ── PROGRESS BAR ── */
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--gold),var(--gold-light));z-index:1000;width:0;transition:width .1s}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(30px);transition:opacity 1s,transform 1s}
 .rv.in{opacity:1;transform:none}
-.rv.fl{transform:translateX(-36px)}
-.rv.fl.in{transform:none}
-.rv.fr{transform:translateX(36px)}
-.rv.fr.in{transform:none}
-@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.rv.rl{transform:translateX(-30px)}
+.rv.rr{transform:translateX(30px)}
+.rv.rl.in,.rv.rr.in{transform:none}
+
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<div id="cur"></div><div id="cur2"></div>
+
+<div id="c1"></div>
+<div id="c2"></div>
+<div id="prog"></div>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="n-logo">Rustic Moon Photo</a>
-  <ul class="n-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <a href="#hero" class="logo">Rustic Moon</a>
+  <div class="nav-r">
+    <ul>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+    </ul>
+    <a href="#booking" class="nav-book">Book Now</a>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-img">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=85" alt="Wedding"/>
-    <div class="hero-img-overlay"></div>
+<!-- ① HERO -->
+<section class="panel" id="hero">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=90" alt="Wedding"/>
+    <div class="hero-media-fade"></div>
   </div>
-  <div class="hero-text">
-    <div class="hero-ghost">L</div>
-    <div class="hero-eyebrow">South Florida Photographer</div>
-    <h1 class="hero-title">Telling your<br><em>love story</em><br>through imagery</h1>
-    <p class="hero-sub">Treasure Coast · Available Worldwide</p>
-    <div class="hero-actions">
-      <a href="#work" class="btn btn-fill">View Portfolio</a>
-      <a href="#contact" class="btn btn-ghost">Book a Session</a>
+  <div class="hero-copy">
+    <div class="hero-counter">01</div>
+    <p class="h-pretitle">South Florida · Est. 2018</p>
+    <h1 class="h-title">Where love<br>becomes <em>art.</em></h1>
+    <p class="h-body">Award-winning wedding &amp; lifestyle photography on the Treasure Coast of Florida. Candid, cinematic, and deeply personal — available worldwide.</p>
+    <div class="h-actions">
+      <a href="#work" class="btn-p bp-fill">View Portfolio</a>
+      <a href="#booking" class="btn-p bp-line">Book a Date</a>
     </div>
-    <div class="hero-scroll"><div class="sdot"></div><span>Scroll to explore</span></div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="mq-track">
-    <div class="mq-item"><span>Weddings</span><i></i><span>Elopements</span><i></i><span>Engagements</span><i></i><span>Lifestyle</span><i></i><span>Portraits</span><i></i><span>Maternity</span><i></i><span>Treasure Coast, FL</span><i></i><span>Available Worldwide</span><i></i></div>
-    <div class="mq-item"><span>Weddings</span><i></i><span>Elopements</span><i></i><span>Engagements</span><i></i><span>Lifestyle</span><i></i><span>Portraits</span><i></i><span>Maternity</span><i></i><span>Treasure Coast, FL</span><i></i><span>Available Worldwide</span><i></i></div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-img rv fl">
-    <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=900&q=85" alt="Lydia"/>
-  </div>
-  <div class="about-text rv">
-    <div class="lbl">About Lydia</div>
-    <h2>Candid moments,<br><em>cinematic flair</em></h2>
-    <p>Wedding photos are more than just pictures — they're little time capsules that preserve all those precious moments for you to relive and share with loved ones for years to come.</p>
-    <p>Lydia is a lifestyle and wedding photographer based in the Treasure Coast of Florida whose style is candid and inspiring, with a touch of cinematic flair. Available for world travel wherever love may take her.</p>
-    <a href="#contact" class="arrow-link"><span>Book a session</span><div class="al"></div></a>
-  </div>
-</section>
-
-<!-- DRAG GALLERY -->
-<section class="gallery" id="work">
-  <div class="gallery-head rv">
-    <h2>Selected<br><em>Work</em></h2>
-    <p>Every frame is a chapter. Every image, a memory that lasts a lifetime.</p>
-  </div>
-  <div class="cards-vp" id="cvp">
-    <div class="cards-track">
-      <div class="card"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=700&q=80" alt=""><div class="card-meta"><h4>The Fords</h4><span>Wedding · 2024</span></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=80" alt=""><div class="card-meta"><h4>Garden Elopement</h4><span>Elopement · 2024</span></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=700&q=80" alt=""><div class="card-meta"><h4>Golden Hour</h4><span>Engagement · 2024</span></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=700&q=80" alt=""><div class="card-meta"><h4>Coastal Ceremony</h4><span>Wedding · 2023</span></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=700&q=80" alt=""><div class="card-meta"><h4>Vineyard Session</h4><span>Lifestyle · 2023</span></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=700&q=80" alt=""><div class="card-meta"><h4>Sunset Portraits</h4><span>Portrait · 2024</span></div></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=700&q=80" alt=""><div class="card-meta"><h4>Bohemian Union</h4><span>Wedding · 2024</span></div></div>
+    <div class="h-scroll">
+      <div class="h-scroll-line"></div>
+      <span>Scroll</span>
     </div>
   </div>
-  <p class="drag-hint rv">← Drag to explore →</p>
 </section>
 
-<!-- MOVING TILES STRIP -->
-<div class="tiles">
-  <div class="tiles-track">
-    <div class="tile"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=75" alt=""><div class="tile-lbl"><span>Weddings</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=75" alt=""><div class="tile-lbl"><span>Elopements</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=75" alt=""><div class="tile-lbl"><span>Engagements</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=75" alt=""><div class="tile-lbl"><span>Lifestyle</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=75" alt=""><div class="tile-lbl"><span>Portraits</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=75" alt=""><div class="tile-lbl"><span>Family</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=75" alt=""><div class="tile-lbl"><span>Weddings</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=75" alt=""><div class="tile-lbl"><span>Elopements</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=75" alt=""><div class="tile-lbl"><span>Engagements</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=75" alt=""><div class="tile-lbl"><span>Lifestyle</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=75" alt=""><div class="tile-lbl"><span>Portraits</span></div></div>
-    <div class="tile"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=75" alt=""><div class="tile-lbl"><span>Family</span></div></div>
-  </div>
-</div>
-
-<!-- TESTIMONIAL -->
-<section class="testimonial rv">
-  <div class="testimonial-inner">
-    <div class="gold-bar"></div>
-    <blockquote>"I can't recommend Lydia enough as a photographer. She is incredibly talented, professional, and surpassed all of our expectations as an artist capturing our special day. From the minute we started our engagement shoot I had zero doubts that everything would turn out perfect. And it was!"</blockquote>
-    <cite>— The Fords, Wedding 2024</cite>
+<!-- ② STORY PANEL -->
+<section class="photo-panel" id="story">
+  <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1800&q=88" alt="Story"/>
+  <div class="photo-panel-overlay ppo-dark"></div>
+  <div class="photo-panel-overlay ppo-bottom"></div>
+  <div class="photo-panel-content">
+    <div class="ppc-inner rv rl">
+      <div class="ppc-label">The Artist</div>
+      <h2>Lydia Bogachov —<br><em>Your storyteller.</em></h2>
+      <p>Every wedding has a soul. Lydia's job is to find it — in a stolen glance, a trembling hand, a tear that slips through laughter. Her approach is quiet, intuitive, and deeply human. No posing. No directing. Just truth, beautifully lit.</p>
+    </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="svcs" id="services">
-  <div class="svc-block rv">
-    <div class="svc-n">01</div>
-    <h3>Weddings &amp;<br>Elopements</h3>
-    <p>Full-day coverage capturing every candid tear, every stolen glance, every moment of pure joy. Your complete story, told beautifully.</p>
+<!-- ③ MOVING TILES -->
+<section class="tiles-panel" id="work">
+  <div class="tile-row">
+    <div class="tile"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt=""><div class="tile-badge"><span>Weddings</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80" alt=""><div class="tile-badge"><span>Portraits</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=80" alt=""><div class="tile-badge"><span>Engagements</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt=""><div class="tile-badge"><span>Lifestyle</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt=""><div class="tile-badge"><span>Elopements</span></div></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=600&q=80" alt=""><div class="tile-badge"><span>Bohemian</span></div></div>
+    <!-- dupe -->
+    <div class="tile"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=600&q=80" alt=""></div>
   </div>
-  <div class="svc-block rv">
-    <div class="svc-n">02</div>
-    <h3>Engagements &amp;<br>Portraits</h3>
-    <p>Relaxed sessions that reveal who you truly are together. Cinematic, natural, and timeless images you'll treasure forever.</p>
-  </div>
-  <div class="svc-block rv">
-    <div class="svc-n">03</div>
-    <h3>Lifestyle &amp;<br>Maternity</h3>
-    <p>Milestone moments frozen in time. From first bumps to family gatherings, every chapter of life deserves its own beautiful frame.</p>
-  </div>
-</section>
-
-<!-- CTA BAND -->
-<section class="cta">
-  <div class="cta-bg"></div>
-  <div class="cta-content rv">
-    <div style="font-size:.6rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:14px"><span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span>So Much Love<span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span></div>
-    <h2>Your story deserves<br>to be <em>remembered</em></h2>
-    <p>Available worldwide · Treasure Coast, Florida</p>
-    <a href="#contact" class="big-btn">Begin your story</a>
-  </div>
-</section>
-
-<!-- FILM STRIP -->
-<div class="filmstrip">
-  <div class="fs-track">
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1470290378698-263fa7ca0ece?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1470290378698-263fa7ca0ece?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400&q=75" alt=""></div>
-    <div class="fs-img"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=400&q=75" alt=""></div>
-  </div>
-</div>
-
-<!-- LOCATION -->
-<section class="location">
-  <div class="loc-text rv fl">
-    <div class="lbl">Based in Florida</div>
-    <h2>Treasure Coast<br>to the <em>world</em></h2>
-    <p>Available for travel wherever love may take you. From South Florida beaches to European destinations — Lydia brings her signature candid cinematic eye everywhere.</p>
-    <a href="#contact" class="arrow-link"><span>Inquire about travel</span><div class="al"></div></a>
-  </div>
-  <div class="loc-img rv fr">
-    <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=900&q=85" alt="Florida Wedding"/>
-    <div class="loc-badge">Est. Florida</div>
+  <div class="tile-row">
+    <div class="tile"><img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1470290378698-263fa7ca0ece?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80" alt=""></div>
+    <!-- dupe -->
+    <div class="tile"><img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1470290378698-263fa7ca0ece?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80" alt=""></div>
+    <div class="tile"><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80" alt=""></div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-ghost">Let's create</div>
-  <div class="contact-inner rv">
-    <div style="font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:14px"><span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span>Get in touch<span style="display:inline-block;width:24px;height:1px;background:var(--gold)"></span></div>
-    <h2>Ready to tell<br>your <em>story?</em></h2>
-    <p>Limited dates available for 2025 &amp; 2026</p>
-    <a href="mailto:hello@rusticmoonphoto.com" class="big-btn">Book Lydia</a>
+<!-- ④ PHOTO PANEL 2 -->
+<section class="photo-panel">
+  <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1800&q=88" alt="Ceremony"/>
+  <div class="photo-panel-overlay ppo-dark"></div>
+  <div class="photo-panel-overlay ppo-bottom"></div>
+  <div class="photo-panel-content right">
+    <div class="ppc-inner rv rr">
+      <div class="ppc-label">The Work</div>
+      <h2>Moments that<br><em>live forever.</em></h2>
+      <p>From intimate elopements on the Florida coast to grand ballroom celebrations — every story is photographed with the same unhurried attention to truth. No moment is too small to matter.</p>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ⑤ TESTIMONIALS -->
+<section class="panel" id="testimonials" style="scroll-snap-align:start">
+  <div class="t-header rv">
+    <span>Loving Words</span>
+    <h2>What clients <em>say</em></h2>
+  </div>
+  <div class="t-track-wrap">
+    <div class="t-track">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"I can't recommend Lydia enough. She is incredibly talented, professional, and surpassed all of our expectations. Every smile, every tear — captured perfectly."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Sarah & James Ford</span><small>Wedding · 2024</small></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"Working with Lydia was the best decision we made for our wedding. She blended into the background and somehow caught every single magical moment."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Maria & Carlos Reyes</span><small>Elopement · 2024</small></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"The photos were beyond anything we imagined. Lydia has an eye for light and emotion that is truly rare. Our gallery made us cry the happiest tears."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Emma & Tyler Walsh</span><small>Wedding · 2023</small></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"From engagement shoot to wedding day, Lydia was calm, creative, and made us feel completely at ease. The results speak for themselves — absolute art."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Priya & Daniel Kim</span><small>Wedding · 2024</small></div>
+        </div>
+      </div>
+      <!-- dupes for loop -->
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"I can't recommend Lydia enough. She is incredibly talented, professional, and surpassed all of our expectations. Every smile, every tear — captured perfectly."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Sarah & James Ford</span><small>Wedding · 2024</small></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"Working with Lydia was the best decision we made for our wedding. She blended into the background and somehow caught every single magical moment."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Maria & Carlos Reyes</span><small>Elopement · 2024</small></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"The photos were beyond anything we imagined. Lydia has an eye for light and emotion that is truly rare. Our gallery made us cry the happiest tears."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Emma & Tyler Walsh</span><small>Wedding · 2023</small></div>
+        </div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p>"From engagement shoot to wedding day, Lydia was calm, creative, and made us feel completely at ease. The results speak for themselves — absolute art."</p>
+        <div class="t-card-author">
+          <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&q=75" alt=""/>
+          <div class="t-card-author-info"><span>Priya & Daniel Kim</span><small>Wedding · 2024</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ SERVICES -->
+<section class="panel" id="services" style="scroll-snap-align:start">
+  <div class="s-inner">
+    <div class="s-top rv">
+      <h2>What I<br><em>offer</em></h2>
+      <p>Every package is bespoke. Every session is personal. Every image is crafted with intention.</p>
+    </div>
+    <div class="s-grid rv">
+      <div class="s-item">
+        <div class="s-item-line"></div>
+        <div class="s-num">I</div>
+        <h3>Weddings &amp; Elopements</h3>
+        <p>Full-day immersive coverage. From getting ready to the last dance, every chapter of your day captured with discretion and artistry.</p>
+      </div>
+      <div class="s-item">
+        <div class="s-item-line"></div>
+        <div class="s-num">II</div>
+        <h3>Engagements &amp; Portraits</h3>
+        <p>Relaxed, unhurried sessions that reveal who you are together. Golden hour, coastal, or wherever your story lives.</p>
+      </div>
+      <div class="s-item">
+        <div class="s-item-line"></div>
+        <div class="s-num">III</div>
+        <h3>Lifestyle &amp; Maternity</h3>
+        <p>Life's most tender milestones deserve the most careful eye. Maternity, family, and documentary lifestyle sessions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ BOOKING CTA -->
+<section class="panel" id="booking">
+  <div class="booking-bg">
+    <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1800&q=85" alt=""/>
+    <div></div>
+  </div>
+  <div class="booking-content rv">
+    <div class="b-pretitle">Limited Availability · 2025 &amp; 2026</div>
+    <h2>Let's create<br>something <em>beautiful.</em></h2>
+    <p>Lydia takes on a select number of weddings each year to ensure every couple receives her full attention and artistry. Reach out early — dates fill quickly.</p>
+    <div class="b-actions">
+      <a href="mailto:hello@rusticmoonphoto.com" class="btn-p bp-fill">Start the Conversation</a>
+      <a href="https://www.instagram.com/rusticmoonphoto/" target="_blank" class="btn-p bp-line">View Instagram</a>
+    </div>
+    <p class="b-avail">Treasure Coast · Florida · Available Worldwide</p>
+  </div>
+</section>
+
+<!-- ⑧ FOOTER -->
 <footer>
-  <div class="footer-grid">
+  <div class="f-top rv">
     <div class="f-brand">
-      <span class="f-logo">Rustic Moon Photo</span>
-      <p>Lydia Bogachov — lifestyle and wedding photographer based in the Treasure Coast of Florida. Candid, inspiring, with a touch of cinematic flair.</p>
+      <span class="f-logo">Rustic Moon</span>
+      <p>Lydia Bogachov — lifestyle and wedding photographer. Candid, cinematic, and deeply personal. Based in Florida, available everywhere love exists.</p>
+      <a href="https://www.instagram.com/rusticmoonphoto/" target="_blank" class="f-ig">@rusticmoonphoto ↗</a>
     </div>
     <div class="f-col">
       <h4>Navigate</h4>
       <ul>
-        <li><a href="#about">About</a></li>
+        <li><a href="#story">About</a></li>
         <li><a href="#work">Portfolio</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#booking">Book</a></li>
       </ul>
     </div>
     <div class="f-col">
-      <h4>Connect</h4>
+      <h4>Services</h4>
       <ul>
-        <li><a href="https://www.instagram.com/rusticmoonphoto/" target="_blank">Instagram</a></li>
-        <li><a href="#">Client Galleries</a></li>
+        <li><a href="#services">Weddings</a></li>
+        <li><a href="#services">Elopements</a></li>
+        <li><a href="#services">Engagements</a></li>
+        <li><a href="#services">Lifestyle</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Contact</h4>
+      <ul>
         <li><a href="mailto:hello@rusticmoonphoto.com">Email Lydia</a></li>
+        <li><a href="https://www.instagram.com/rusticmoonphoto/" target="_blank">Instagram</a></li>
+        <li><a href="#booking">Client Galleries</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2024 Lydia Bogachov · Rustic Moon Photo</p>
-    <p style="color:rgba(201,168,76,.4);font-size:.58rem;letter-spacing:.18em">SOUTH FLORIDA PHOTOGRAPHER</p>
+  <div class="f-bottom">
+    <p>© 2024 Lydia Bogachov · Rustic Moon Photo · All rights reserved</p>
+    <div class="f-bottom-right">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
   </div>
 </footer>
 
 <script>
-// Custom cursor
-const cur=document.getElementById('cur'),cur2=document.getElementById('cur2')
-let mx=0,my=0,cx=0,cy=0
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'})
-;(function loop(){cx+=(mx-cx)*.13;cy+=(my-cy)*.13;cur2.style.left=cx+'px';cur2.style.top=cy+'px';requestAnimationFrame(loop)})()
+// Cursor
+const c1=document.getElementById('c1'),c2=document.getElementById('c2')
+let mx=0,my=0,lx=0,ly=0
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;c1.style.left=mx+'px';c1.style.top=my+'px'});
+(function loop(){lx+=(mx-lx)*.12;ly+=(my-ly)*.12;c2.style.left=lx+'px';c2.style.top=ly+'px';requestAnimationFrame(loop)})()
 
-// Nav scroll
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>60))
+// Progress bar
+const prog=document.getElementById('prog')
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100
+  prog.style.width=pct+'%'
+  document.getElementById('nav').classList.toggle('stuck',window.scrollY>80)
+},{passive:true})
 
-// Reveal
-const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting){el.target.classList.add('in');obs.unobserve(el.target)}}),{threshold:.1})
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el))
+// Reveal on scroll
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}}),{threshold:.12})
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el))
 
-// Drag gallery
-const vp=document.getElementById('cvp')
-let dn=false,sx=0,sl=0
-vp.addEventListener('mousedown',e=>{dn=true;sx=e.pageX;sl=vp.scrollLeft;vp.classList.add('drag')})
-document.addEventListener('mouseup',()=>{dn=false;vp.classList.remove('drag')})
-document.addEventListener('mousemove',e=>{if(!dn)return;e.preventDefault();vp.scrollLeft=sl-(e.pageX-sx)*1.2})
+// Photo panel zoom on scroll into view
+const pp=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('in-view',e.isIntersecting)),{threshold:.3})
+document.querySelectorAll('.photo-panel').forEach(el=>pp.observe(el))
 </script>
 </body>
 </html>
