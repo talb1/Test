@@ -1,595 +1,845 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Rustic Moon Photo — Lydia Bogachov</title>
 <meta name="description" content="Wedding and lifestyle photography by Lydia Bogachov. Treasure Coast, Florida. Available worldwide."/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
-:root {
-  --bg:     #f9f7f4;
-  --warm:   #f3ede6;
-  --text:   #1c1917;
-  --mid:    rgba(28,25,23,0.48);
-  --dim:    rgba(28,25,23,0.24);
-  --accent: #7a5c38;
-  --border: rgba(28,25,23,0.09);
+:root{
+  --paper:   #f0e6cf;
+  --deep:    #16231a;
+  --swamp:   #243320;
+  --coral:   #c4532a;
+  --teal:    #2e7060;
+  --gold:    #a8882a;
+  --sand:    #e4d4b0;
+  --mist:    rgba(22,35,26,.42);
+  --faint:   rgba(22,35,26,.12);
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Jost', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+body{
+  background:var(--paper);
+  color:var(--deep);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;
+  font-weight:300;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
-img { display: block; width: 100%; }
-a   { color: inherit; text-decoration: none; }
 
-/* ─── NAV ─────────────────────────────────────────── */
-nav {
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 32px 60px;
-  transition: padding .4s, background .4s, border-color .4s;
-  border-bottom: 1px solid transparent;
+/* ── GRAIN OVERLAY ────────────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:999;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  opacity:.55;
 }
-nav.scrolled {
-  padding: 18px 60px;
-  background: rgba(249,247,244,.93);
-  backdrop-filter: blur(14px);
-  border-color: var(--border);
-}
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 400;
-  letter-spacing: .1em;
-  color: var(--text);
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  list-style: none;
-}
-.nav-links a {
-  font-size: .62rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--mid);
-  transition: color .2s;
-}
-.nav-links a:hover { color: var(--text); }
-.nav-links .nav-book { color: var(--accent); }
 
-/* ─── HERO ────────────────────────────────────────── */
-#hero {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-}
-.hero-img {
-  position: absolute;
-  inset: 0; width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(.88) contrast(1.03) saturate(.86);
-  transform: scale(1.05);
-  animation: hzoom 22s ease-in-out infinite alternate;
-}
-@keyframes hzoom {
-  from { transform: scale(1.05); }
-  to   { transform: scale(1.0); }
-}
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(249,247,244,.06) 0%,
-    rgba(249,247,244,.0)  30%,
-    rgba(249,247,244,.5)  80%,
-    rgba(249,247,244,.82) 100%
+img{display:block;width:100%}
+a{color:inherit;text-decoration:none}
+
+/* ── STRIPE TEXTURE ───────────────────────────────── */
+.stripe-bg{
+  background-image:repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 3px,
+    rgba(22,35,26,.018) 3px,
+    rgba(22,35,26,.018) 6px
   );
 }
-.hero-foot {
-  position: absolute;
-  bottom: 60px; left: 60px; right: 60px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
+
+/* ── NAV ──────────────────────────────────────────── */
+nav{
+  position:fixed;
+  inset:0 0 auto;
+  z-index:200;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:28px 52px;
+  transition:padding .4s, background .4s;
 }
-.hero-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1.0;
-  color: var(--text);
-  opacity: 0;
-  animation: rise 1.1s .45s cubic-bezier(.22,1,.36,1) forwards;
+nav.scrolled{
+  padding:16px 52px;
+  background:rgba(240,230,207,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--faint);
 }
-.hero-name em { font-style: italic; display: block; }
-.hero-caption {
-  text-align: right;
-  opacity: 0;
-  animation: rise .9s .8s cubic-bezier(.22,1,.36,1) forwards;
+.nav-logo{
+  font-family:'DM Serif Display',serif;
+  font-size:1.05rem;
+  letter-spacing:.06em;
+  color:var(--deep);
 }
-.hero-caption p {
-  font-size: .6rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--mid);
-  line-height: 2.2;
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:36px;
+  align-items:center;
+}
+.nav-links a{
+  font-size:.65rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--mist);
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--deep)}
+.nav-links .nav-book{color:var(--coral)}
+
+/* ── HERO ─────────────────────────────────────────── */
+#hero{
+  position:relative;
+  height:100vh;
+  min-height:600px;
+  overflow:hidden;
+  background:#1a2a1e;
 }
 
-/* ─── INTRO ───────────────────────────────────────── */
-#intro {
-  padding: 120px 60px;
-  max-width: 900px;
-  border-bottom: 1px solid var(--border);
+.hero-photo{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(.72) saturate(.75) sepia(.18);
+  transform:scale(1.04);
+  animation:slow-drift 28s ease-in-out infinite alternate;
 }
-.intro-label {
-  font-size: .58rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 24px;
-  display: block;
-}
-.intro-body {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
-  font-weight: 300;
-  line-height: 1.55;
-  color: var(--text);
-}
-.intro-body em { font-style: italic; }
-.intro-sub {
-  font-size: .82rem;
-  line-height: 2;
-  color: var(--mid);
-  max-width: 480px;
-  margin-top: 28px;
+@keyframes slow-drift{
+  from{transform:scale(1.04) translateX(0)}
+  to{transform:scale(1.08) translateX(-1%)}
 }
 
-/* ─── PORTFOLIO ───────────────────────────────────── */
-#portfolio {
-  padding: 80px 60px 120px;
-  border-bottom: 1px solid var(--border);
-}
-.port-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 56px;
-}
-.port-label {
-  font-size: .58rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--mid);
-}
-.port-cta {
-  font-size: .62rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border-bottom: 1px solid rgba(122,92,56,.25);
-  padding-bottom: 2px;
-  transition: border-color .25s;
-}
-.port-cta:hover { border-color: var(--accent); }
-
-/* Individual image blocks with generous gaps */
-.pf-row {
-  margin-bottom: 20px;
-}
-.pf-row:last-child { margin-bottom: 0; }
-
-.pf-single {
-  height: 72vh;
-  overflow: hidden;
-}
-.pf-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  height: 52vh;
-}
-.pf-pair-lg {
-  display: grid;
-  grid-template-columns: 60fr 40fr;
-  gap: 20px;
-  height: 60vh;
-}
-.pf-trio {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-  height: 42vh;
+/* warm wash at bottom */
+.hero-wash{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(22,35,26,.08) 0%,
+    rgba(22,35,26,.0) 28%,
+    rgba(240,230,207,.0) 55%,
+    rgba(240,230,207,.72) 82%,
+    rgba(240,230,207,1) 100%
+  );
 }
 
-.pf-single img,
-.pf-pair > div img,
-.pf-pair-lg > div img,
-.pf-trio > div img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(.9) contrast(1.03) saturate(.85);
-  transition: transform .85s ease, filter .55s ease;
-}
-.pf-single:hover img,
-.pf-pair > div:hover img,
-.pf-pair-lg > div:hover img,
-.pf-trio > div:hover img {
-  transform: scale(1.03);
-  filter: brightness(1) contrast(1.02) saturate(.9);
-}
-.pf-pair > div,
-.pf-pair-lg > div,
-.pf-trio > div {
-  overflow: hidden;
+/* left teal band */
+.hero-band{
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:6px;
+  background:var(--teal);
+  opacity:.8;
 }
 
-/* ─── ABOUT ───────────────────────────────────────── */
-#about {
-  padding: 120px 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-}
-.about-img {
-  height: 620px;
-  overflow: hidden;
-}
-.about-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(.88) contrast(1.03) saturate(.85);
-  transition: transform 1s ease;
-}
-.about-img:hover img { transform: scale(1.025); }
-.about-tag {
-  font-size: .58rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 24px;
-}
-.about-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 2.8vw, 2.8rem);
-  font-weight: 300;
-  line-height: 1.12;
-  color: var(--text);
-  margin-bottom: 32px;
-}
-.about-title em { font-style: italic; }
-.about-copy p {
-  font-size: .82rem;
-  line-height: 2.05;
-  color: var(--mid);
-  max-width: 420px;
-  margin-bottom: 16px;
-}
-.about-copy p:last-of-type { margin-bottom: 44px; }
-.text-link {
-  font-size: .62rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border-bottom: 1px solid rgba(122,92,56,.28);
-  padding-bottom: 2px;
-  display: inline-block;
-  transition: border-color .25s;
-}
-.text-link:hover { border-color: var(--accent); }
-
-/* ─── SERVICES ────────────────────────────────────── */
-#services {
-  padding: 120px 60px;
-  border-bottom: 1px solid var(--border);
-}
-.services-header {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  margin-bottom: 72px;
-}
-.services-tag {
-  font-size: .58rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 18px;
-}
-.services-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 2.8vw, 2.8rem);
-  font-weight: 300;
-  line-height: 1.1;
-  color: var(--text);
-}
-.services-title em { font-style: italic; }
-.services-note {
-  font-size: .8rem;
-  line-height: 2;
-  color: var(--mid);
-  padding-top: 6px;
-  max-width: 460px;
+/* SVG palm silhouettes */
+.hero-palms{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
 }
 
-.service-item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  gap: 32px;
-  padding: 36px 0;
-  border-top: 1px solid var(--border);
+/* text block */
+.hero-text{
+  position:absolute;
+  bottom:56px;
+  left:52px;
+  right:52px;
 }
-.service-item:last-child { border-bottom: 1px solid var(--border); }
-.service-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 10px;
-  transition: color .25s;
+.hero-eyebrow{
+  font-size:.6rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--sand);
+  opacity:.85;
+  margin-bottom:14px;
+  display:block;
+  opacity:0;
+  animation:up .8s .3s forwards;
 }
-.service-item:hover .service-name { color: var(--accent); }
-.service-desc {
-  font-size: .78rem;
-  line-height: 2;
-  color: var(--mid);
-  max-width: 520px;
+.hero-h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(3rem,6.5vw,6.8rem);
+  font-weight:400;
+  line-height:.95;
+  color:var(--paper);
+  opacity:0;
+  animation:up .9s .5s forwards;
+  max-width:760px;
 }
-.service-duration {
-  font-size: .58rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--dim);
-  white-space: nowrap;
+.hero-h1 em{font-style:italic;color:var(--sand)}
+.hero-sub{
+  margin-top:22px;
+  font-size:.7rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(240,230,207,.5);
+  opacity:0;
+  animation:up .8s .75s forwards;
 }
-
-/* ─── QUOTE ───────────────────────────────────────── */
-#quote {
-  padding: 120px 60px;
-  background: var(--warm);
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: center;
-}
-.quote-img {
-  height: 520px;
-  overflow: hidden;
-}
-.quote-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(.88) contrast(1.03) saturate(.85);
-}
-.quote-mark {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 4.5rem;
-  line-height: .7;
-  color: var(--accent);
-  opacity: .28;
-  display: block;
-  margin-bottom: 24px;
-}
-.quote-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.62;
-  color: var(--text);
-  margin-bottom: 28px;
-}
-.quote-author {
-  font-size: .6rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--accent);
+@keyframes up{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:none}
 }
 
-/* ─── CONTACT ─────────────────────────────────────── */
-#contact {
-  padding: 120px 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: start;
+/* scroll hint */
+.scroll-hint{
+  position:absolute;
+  bottom:52px;
+  right:52px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  opacity:0;
+  animation:up .7s 1.1s forwards;
 }
-.contact-tag {
-  font-size: .58rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
+.scroll-hint span{
+  font-size:.52rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:rgba(240,230,207,.4);
+  writing-mode:vertical-rl;
 }
-.contact-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 3.5vw, 3.6rem);
-  font-weight: 300;
-  line-height: 1.08;
-  color: var(--text);
-  margin-bottom: 24px;
-}
-.contact-title em { font-style: italic; }
-.contact-body {
-  font-size: .82rem;
-  line-height: 2;
-  color: var(--mid);
-  max-width: 380px;
-  margin-bottom: 40px;
-}
-.contact-avail {
-  font-size: .6rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-.contact-right { padding-top: 8px; }
-.contact-right p {
-  font-size: .82rem;
-  line-height: 2;
-  color: var(--mid);
-  max-width: 380px;
-  margin-bottom: 36px;
-}
-.btn-primary {
-  display: inline-block;
-  font-size: .64rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  padding: 15px 40px;
-  background: var(--text);
-  color: var(--bg);
-  transition: background .3s;
-  margin-right: 12px;
-}
-.btn-primary:hover { background: #2c2825; }
-.btn-ghost {
-  display: inline-block;
-  font-size: .64rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  padding: 15px 40px;
-  border: 1px solid var(--border);
-  color: var(--mid);
-  transition: border-color .3s, color .3s;
-}
-.btn-ghost:hover { border-color: var(--text); color: var(--text); }
-
-/* ─── FOOTER ──────────────────────────────────────── */
-footer {
-  background: var(--text);
-  padding: 72px 60px 40px;
-}
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 60px;
-  padding-bottom: 60px;
-  border-bottom: 1px solid rgba(249,247,244,.1);
-  margin-bottom: 28px;
-}
-.footer-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.3rem;
-  font-weight: 400;
-  letter-spacing: .1em;
-  color: var(--bg);
-  display: block;
-  margin-bottom: 14px;
-}
-.footer-brand p {
-  font-size: .74rem;
-  line-height: 1.95;
-  color: rgba(249,247,244,.35);
-  max-width: 240px;
-}
-.footer-links {
-  display: flex;
-  gap: 56px;
-}
-.footer-col h5 {
-  font-size: .55rem;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: rgba(249,247,244,.3);
-  margin-bottom: 18px;
-}
-.footer-col ul { list-style: none; }
-.footer-col li { margin-bottom: 10px; }
-.footer-col a {
-  font-size: .76rem;
-  color: rgba(249,247,244,.38);
-  transition: color .25s;
-}
-.footer-col a:hover { color: rgba(249,247,244,.8); }
-.footer-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.footer-bar p, .footer-bar a {
-  font-size: .58rem;
-  letter-spacing: .04em;
-  color: rgba(249,247,244,.18);
-  transition: color .25s;
-}
-.footer-bar a:hover { color: rgba(249,247,244,.42); }
-.footer-bar-links { display: flex; gap: 24px; }
-
-/* ─── REVEAL ──────────────────────────────────────── */
-.rv {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity .85s ease, transform .85s ease;
-}
-.rv.in { opacity: 1; transform: none; }
-.d1 { transition-delay: .1s; }
-.d2 { transition-delay: .22s; }
-.d3 { transition-delay: .34s; }
-
-@keyframes rise {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
+.scroll-line{
+  width:1px;
+  height:48px;
+  background:linear-gradient(to bottom, rgba(240,230,207,.5), rgba(240,230,207,0));
 }
 
-/* ─── RESPONSIVE ──────────────────────────────────── */
-@media (max-width: 1024px) {
-  #about { grid-template-columns: 1fr; gap: 56px; }
-  .about-img { height: 480px; }
-  .services-header { grid-template-columns: 1fr; gap: 24px; }
-  #quote { grid-template-columns: 1fr; gap: 56px; }
-  .quote-img { height: 400px; }
-  #contact { grid-template-columns: 1fr; gap: 56px; }
-  .pf-pair-lg { grid-template-columns: 1fr 1fr; }
+/* ── DIVIDER PALMS (section ornament) ─────────────── */
+.ornament{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-bottom:40px;
 }
-@media (max-width: 768px) {
-  nav, nav.scrolled { padding: 20px 24px; }
-  .nav-links li:not(:last-child) { display: none; }
-  #hero .hero-foot { left: 24px; right: 24px; bottom: 40px; flex-direction: column; gap: 12px; }
-  .hero-caption { text-align: left; }
-  #intro, #portfolio, #about, #services, #quote, #contact { padding-left: 24px; padding-right: 24px; }
-  .port-header { flex-direction: column; gap: 16px; }
-  .pf-pair, .pf-pair-lg { grid-template-columns: 1fr; height: auto; gap: 12px; }
-  .pf-pair > div, .pf-pair-lg > div { height: 52vw; }
-  .pf-trio { grid-template-columns: 1fr 1fr; height: auto; gap: 12px; }
-  .pf-trio > div { height: 44vw; }
-  .pf-single { height: 60vw; }
-  .services-header { grid-template-columns: 1fr; gap: 20px; }
-  .service-item { grid-template-columns: 1fr; }
-  .service-duration { display: none; }
-  footer { padding: 56px 24px 32px; }
-  .footer-top { flex-direction: column; gap: 40px; }
-  .footer-links { gap: 32px; }
-  .footer-bar { flex-direction: column; gap: 12px; text-align: center; }
-  .btn-primary { margin-right: 0; margin-bottom: 12px; display: block; text-align: center; }
-  .btn-ghost { display: block; text-align: center; }
+.ornament-line{
+  flex:1;
+  height:1px;
+  background:var(--faint);
+}
+.ornament svg{fill:var(--coral);opacity:.55}
+
+/* ── INTRO SECTION ────────────────────────────────── */
+#intro{
+  padding:100px 52px 90px;
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:80px;
+  align-items:start;
+  border-bottom:1px solid var(--faint);
+  position:relative;
+}
+.intro-left{
+  padding-top:6px;
+}
+.intro-year{
+  font-size:.58rem;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--coral);
+  display:block;
+  margin-bottom:16px;
+}
+.intro-loc{
+  font-size:.72rem;
+  line-height:2;
+  color:var(--mist);
+}
+.intro-loc strong{display:block;font-weight:500;color:var(--deep);font-size:.78rem;letter-spacing:.08em}
+.intro-divider{
+  width:32px;
+  height:2px;
+  background:var(--coral);
+  margin:24px 0;
+  opacity:.6;
+}
+.intro-body{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.8rem,2.8vw,2.9rem);
+  font-weight:400;
+  line-height:1.38;
+  color:var(--deep);
+}
+.intro-body em{font-style:italic;color:var(--teal)}
+.intro-note{
+  margin-top:28px;
+  font-size:.82rem;
+  line-height:2;
+  color:var(--mist);
+  max-width:520px;
+}
+/* watermark number */
+#intro::after{
+  content:'01';
+  position:absolute;
+  top:70px;right:52px;
+  font-family:'DM Serif Display',serif;
+  font-size:7rem;
+  color:var(--faint);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+}
+
+/* ── PORTFOLIO ────────────────────────────────────── */
+#portfolio{
+  padding:80px 52px 100px;
+  border-bottom:1px solid var(--faint);
+  position:relative;
+}
+#portfolio::after{
+  content:'02';
+  position:absolute;
+  top:60px;right:52px;
+  font-family:'DM Serif Display',serif;
+  font-size:7rem;
+  color:var(--faint);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+}
+.port-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:52px;
+}
+.section-label{
+  font-size:.58rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--mist);
+}
+.port-link{
+  font-size:.6rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--coral);
+  position:relative;
+}
+.port-link::after{
+  content:'';
+  position:absolute;
+  bottom:-2px;left:0;right:0;
+  height:1px;
+  background:var(--coral);
+  opacity:.3;
+  transition:opacity .25s;
+}
+.port-link:hover::after{opacity:1}
+
+/* mosaic grid */
+.pf-mosaic{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-template-rows:repeat(4,16vw);
+  gap:14px;
+}
+.pf-a{grid-column:1/6;grid-row:1/3}
+.pf-b{grid-column:6/10;grid-row:1/2}
+.pf-c{grid-column:10/13;grid-row:1/3}
+.pf-d{grid-column:6/8;grid-row:2/3}
+.pf-e{grid-column:8/10;grid-row:2/3}
+.pf-f{grid-column:1/5;grid-row:3/5}
+.pf-g{grid-column:5/9;grid-row:3/4}
+.pf-h{grid-column:9/13;grid-row:3/5}
+.pf-i{grid-column:5/9;grid-row:4/5}
+
+.pf-cell{
+  overflow:hidden;
+  position:relative;
+}
+.pf-cell img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:brightness(.88) contrast(1.04) saturate(.8) sepia(.06);
+  transition:transform .9s cubic-bezier(.22,1,.36,1), filter .5s;
+}
+.pf-cell:hover img{
+  transform:scale(1.05);
+  filter:brightness(.92) contrast(1.04) saturate(.85);
+}
+
+/* ── ABOUT ────────────────────────────────────────── */
+#about{
+  padding:100px 52px;
+  border-bottom:1px solid var(--faint);
+  position:relative;
+  overflow:hidden;
+}
+#about::after{
+  content:'03';
+  position:absolute;
+  top:70px;right:52px;
+  font-family:'DM Serif Display',serif;
+  font-size:7rem;
+  color:var(--faint);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+}
+.about-inner{
+  display:grid;
+  grid-template-columns:5fr 7fr;
+  gap:80px;
+  align-items:center;
+}
+.about-photo-wrap{
+  position:relative;
+}
+.about-photo{
+  height:580px;
+  overflow:hidden;
+  position:relative;
+}
+.about-photo img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:brightness(.86) contrast(1.04) saturate(.8) sepia(.1);
+  transition:transform 1.1s ease;
+}
+.about-photo:hover img{transform:scale(1.025)}
+/* teal corner accent */
+.about-photo::before{
+  content:'';
+  position:absolute;
+  top:-10px;left:-10px;
+  width:60px;height:60px;
+  border-top:3px solid var(--teal);
+  border-left:3px solid var(--teal);
+  z-index:1;
+  opacity:.6;
+}
+.about-photo::after{
+  content:'';
+  position:absolute;
+  bottom:-10px;right:-10px;
+  width:60px;height:60px;
+  border-bottom:3px solid var(--coral);
+  border-right:3px solid var(--coral);
+  opacity:.6;
+}
+.about-stamp{
+  position:absolute;
+  bottom:24px;
+  left:-24px;
+  background:var(--swamp);
+  padding:16px 20px;
+  z-index:2;
+}
+.about-stamp p{
+  font-size:.58rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--sand);
+  opacity:.7;
+  line-height:2;
+}
+.about-tag{
+  font-size:.58rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--coral);
+  margin-bottom:20px;
+  display:block;
+}
+.about-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,3vw,3rem);
+  font-weight:400;
+  line-height:1.12;
+  color:var(--deep);
+  margin-bottom:28px;
+}
+.about-title em{font-style:italic}
+.about-text p{
+  font-size:.84rem;
+  line-height:2.05;
+  color:var(--mist);
+  max-width:440px;
+  margin-bottom:16px;
+}
+.about-text p:last-of-type{margin-bottom:36px}
+.text-link{
+  font-size:.62rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--teal);
+  border-bottom:1px solid rgba(46,112,96,.28);
+  padding-bottom:2px;
+  display:inline-block;
+  transition:border-color .25s, color .25s;
+}
+.text-link:hover{color:var(--coral);border-color:var(--coral)}
+
+/* ── SERVICES ─────────────────────────────────────── */
+#services{
+  padding:100px 52px;
+  background:var(--swamp);
+  position:relative;
+  overflow:hidden;
+}
+/* subtle palm shadow behind */
+.services-palm-bg{
+  position:absolute;
+  right:-60px;bottom:-40px;
+  opacity:.06;
+  pointer-events:none;
+}
+.services-inner{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:80px;
+  position:relative;
+  z-index:1;
+}
+.services-left{}
+.services-tag{
+  font-size:.58rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--coral);
+  display:block;
+  margin-bottom:18px;
+}
+.services-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,3vw,3rem);
+  font-weight:400;
+  line-height:1.12;
+  color:var(--paper);
+}
+.services-title em{font-style:italic;color:var(--sand)}
+.services-note{
+  margin-top:24px;
+  font-size:.78rem;
+  line-height:1.9;
+  color:rgba(240,230,207,.38);
+  max-width:260px;
+}
+.service-list{}
+.svc{
+  padding:32px 0;
+  border-bottom:1px solid rgba(240,230,207,.08);
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:24px;
+  align-items:baseline;
+  transition:padding-left .3s;
+  cursor:default;
+}
+.svc:first-child{border-top:1px solid rgba(240,230,207,.08)}
+.svc:hover{padding-left:8px}
+.svc-name{
+  font-family:'DM Serif Display',serif;
+  font-size:1.45rem;
+  font-weight:400;
+  color:var(--paper);
+  margin-bottom:8px;
+  transition:color .25s;
+}
+.svc:hover .svc-name{color:var(--sand)}
+.svc-desc{
+  font-size:.76rem;
+  line-height:1.9;
+  color:rgba(240,230,207,.4);
+  max-width:420px;
+}
+.svc-dur{
+  font-size:.56rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--teal);
+  white-space:nowrap;
+  opacity:.8;
+}
+
+/* ── TESTIMONIAL ──────────────────────────────────── */
+#testimonial{
+  padding:100px 52px;
+  background:var(--sand);
+  border-bottom:1px solid var(--faint);
+  position:relative;
+}
+.testimonial-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+.test-img{
+  height:480px;
+  overflow:hidden;
+  position:relative;
+}
+.test-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:brightness(.86) contrast(1.04) saturate(.75) sepia(.12);
+}
+.test-img::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(46,112,96,.12), transparent 60%);
+}
+.test-quote-mark{
+  font-family:'DM Serif Display',serif;
+  font-size:5rem;
+  line-height:.7;
+  color:var(--coral);
+  opacity:.3;
+  display:block;
+  margin-bottom:20px;
+}
+.test-text{
+  font-family:'DM Serif Display',serif;
+  font-style:italic;
+  font-size:clamp(1.25rem,1.9vw,1.7rem);
+  line-height:1.6;
+  color:var(--deep);
+  margin-bottom:28px;
+}
+.test-author{
+  font-size:.6rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--teal);
+}
+/* palm frond ornament */
+.test-ornament{
+  margin-top:40px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+.test-ornament-line{
+  width:32px;height:1px;
+  background:var(--coral);
+  opacity:.4;
+}
+
+/* ── CONTACT ──────────────────────────────────────── */
+#contact{
+  padding:100px 52px;
+  border-bottom:1px solid var(--faint);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:start;
+  position:relative;
+}
+#contact::after{
+  content:'04';
+  position:absolute;
+  top:70px;right:52px;
+  font-family:'DM Serif Display',serif;
+  font-size:7rem;
+  color:var(--faint);
+  line-height:1;
+  pointer-events:none;
+  user-select:none;
+}
+.contact-tag{
+  font-size:.58rem;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--coral);
+  margin-bottom:20px;
+  display:block;
+}
+.contact-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.2rem,3.8vw,4rem);
+  font-weight:400;
+  line-height:1.05;
+  color:var(--deep);
+  margin-bottom:24px;
+}
+.contact-title em{font-style:italic}
+.contact-body{
+  font-size:.82rem;
+  line-height:2;
+  color:var(--mist);
+  max-width:380px;
+  margin-bottom:32px;
+}
+.contact-avail{
+  font-size:.58rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--teal);
+}
+.contact-right{padding-top:6px}
+.contact-right p{
+  font-size:.82rem;
+  line-height:2;
+  color:var(--mist);
+  max-width:380px;
+  margin-bottom:36px;
+}
+.btn-primary{
+  display:inline-block;
+  font-size:.62rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:15px 38px;
+  background:var(--deep);
+  color:var(--paper);
+  transition:background .3s;
+  margin-right:10px;
+}
+.btn-primary:hover{background:var(--swamp)}
+.btn-ghost{
+  display:inline-block;
+  font-size:.62rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:15px 38px;
+  border:1px solid rgba(22,35,26,.2);
+  color:var(--mist);
+  transition:border-color .25s, color .25s;
+}
+.btn-ghost:hover{border-color:var(--deep);color:var(--deep)}
+
+/* ── FOOTER ───────────────────────────────────────── */
+footer{
+  background:var(--deep);
+  padding:72px 52px 36px;
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:60px;
+  padding-bottom:52px;
+  border-bottom:1px solid rgba(240,230,207,.08);
+  margin-bottom:24px;
+}
+.footer-brand-name{
+  font-family:'DM Serif Display',serif;
+  font-size:1.4rem;
+  letter-spacing:.04em;
+  color:var(--paper);
+  display:block;
+  margin-bottom:10px;
+}
+.footer-brand p{
+  font-size:.75rem;
+  line-height:1.9;
+  color:rgba(240,230,207,.28);
+  max-width:260px;
+}
+/* small palm in footer */
+.footer-palm{
+  opacity:.12;
+  flex-shrink:0;
+}
+.footer-nav{
+  display:flex;
+  gap:56px;
+}
+.footer-col h5{
+  font-size:.54rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:rgba(240,230,207,.28);
+  margin-bottom:16px;
+}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{
+  font-size:.74rem;
+  color:rgba(240,230,207,.35);
+  transition:color .25s;
+}
+.footer-col a:hover{color:rgba(240,230,207,.75)}
+.footer-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-bar p,.footer-bar a{
+  font-size:.56rem;
+  letter-spacing:.06em;
+  color:rgba(240,230,207,.16);
+  transition:color .25s;
+}
+.footer-bar a:hover{color:rgba(240,230,207,.4)}
+.footer-bar-links{display:flex;gap:22px}
+/* coral top stripe on footer */
+footer::before{
+  content:'';
+  display:block;
+  height:3px;
+  background:linear-gradient(to right, var(--coral), var(--teal));
+  margin-bottom:72px;
+}
+
+/* ── REVEAL ───────────────────────────────────────── */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s ease,transform .9s ease}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}
+.d2{transition-delay:.24s}
+.d3{transition-delay:.38s}
+.d4{transition-delay:.52s}
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media(max-width:1100px){
+  .pf-mosaic{grid-template-rows:repeat(4,20vw)}
+}
+@media(max-width:900px){
+  #intro{grid-template-columns:1fr;gap:36px}
+  .about-inner{grid-template-columns:1fr;gap:52px}
+  .about-photo{height:420px}
+  .services-inner{grid-template-columns:1fr;gap:44px}
+  .testimonial-inner{grid-template-columns:1fr;gap:48px}
+  .test-img{height:340px}
+  #contact{grid-template-columns:1fr;gap:52px}
+  .pf-mosaic{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:none;
+    gap:10px;
+  }
+  .pf-a,.pf-b,.pf-c,.pf-d,.pf-e,.pf-f,.pf-g,.pf-h,.pf-i{
+    grid-column:auto;
+    grid-row:auto;
+    height:44vw;
+  }
+}
+@media(max-width:640px){
+  nav,nav.scrolled{padding:18px 22px}
+  .nav-links li:not(:last-child){display:none}
+  #hero .hero-text{left:22px;right:22px;bottom:36px}
+  .scroll-hint{display:none}
+  #intro,#portfolio,#about,#services,#testimonial,#contact{padding-left:22px;padding-right:22px}
+  .pf-mosaic{grid-template-columns:1fr;gap:8px}
+  .pf-a,.pf-b,.pf-c,.pf-d,.pf-e,.pf-f,.pf-g,.pf-h,.pf-i{height:72vw}
+  footer{padding:52px 22px 28px}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bar{flex-direction:column;gap:10px;text-align:center}
+  .btn-primary{display:block;text-align:center;margin-right:0;margin-bottom:10px}
+  .btn-ghost{display:block;text-align:center}
+  #intro::after,#portfolio::after,#about::after,#contact::after{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="nav">
   <a class="nav-logo" href="#">Rustic Moon</a>
   <ul class="nav-links">
@@ -602,138 +852,290 @@ footer {
 
 <!-- HERO -->
 <section id="hero">
-  <img class="hero-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=2200&q=92" alt="Wedding"/>
-  <div class="hero-overlay"></div>
-  <div class="hero-foot">
-    <h1 class="hero-name">Lydia Bogachov<em>Wedding Photography</em></h1>
-    <div class="hero-caption">
-      <p>Treasure Coast, Florida</p>
-      <p>Available Worldwide</p>
-    </div>
+  <img class="hero-photo"
+       src="https://images.unsplash.com/photo-1519741497674-611481863552?w=2400&q=90"
+       alt="Wedding ceremony at golden hour"/>
+  <div class="hero-wash"></div>
+  <div class="hero-band"></div>
+
+  <!-- SVG Palm Silhouettes -->
+  <svg class="hero-palms" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice"
+       xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- LEFT PALM -->
+    <g fill="#0f1e12" opacity="0.82">
+      <!-- trunk left -->
+      <path d="M 148 900 C 150 820 144 740 138 660 C 134 600 130 540 133 480
+               C 136 420 142 360 148 300 C 152 255 154 215 150 190
+               L 146 190 C 150 215 148 255 144 300
+               C 138 360 132 420 129 480
+               C 126 540 130 600 134 660
+               C 140 740 146 820 144 900 Z"/>
+      <!-- frond 1 - sweeping left -->
+      <path d="M 150 192 C 130 185 90 170 50 148 C 30 137 10 124 -5 115
+               C 5 118 25 128 45 138 C 85 158 125 173 145 180 Z"/>
+      <path d="M 150 192 C 128 180 88 158 48 130 C 28 116 8 100 -8 88
+               C 2 92 22 108 42 122 C 82 150 122 172 144 184 Z"/>
+      <!-- frond 2 - sweeping right and up -->
+      <path d="M 150 192 C 175 175 215 155 260 138 C 285 128 310 120 330 115
+               C 310 122 285 132 260 144 C 215 163 175 183 152 200 Z"/>
+      <path d="M 150 192 C 178 172 222 148 268 126 C 294 114 320 104 342 98
+               C 322 106 296 116 270 130 C 224 152 180 178 153 200 Z"/>
+      <!-- frond 3 - arching upward left -->
+      <path d="M 150 190 C 140 170 120 140 96 110 C 82 93 66 78 52 66
+               C 64 79 80 96 94 114 C 118 144 138 174 148 196 Z"/>
+      <path d="M 150 190 C 136 168 112 136 84 104 C 68 85 50 68 36 54
+               C 48 67 66 86 82 106 C 110 138 134 170 148 196 Z"/>
+      <!-- frond 4 - arching upward right -->
+      <path d="M 150 190 C 164 170 188 142 216 116 C 232 100 250 86 264 74
+               C 250 88 232 103 216 120 C 188 148 164 176 151 196 Z"/>
+      <!-- frond 5 - nearly straight up -->
+      <path d="M 150 190 C 148 162 145 124 142 88 C 140 66 138 46 136 30
+               C 138 46 140 68 142 92 C 145 128 148 166 150 196 Z"/>
+      <path d="M 150 190 C 152 162 156 124 160 88 C 162 66 164 46 164 30
+               C 163 46 161 68 158 92 C 155 128 152 166 150 196 Z"/>
+    </g>
+
+    <!-- RIGHT PALM (leaning, partial) -->
+    <g fill="#0f1e12" opacity="0.68">
+      <!-- trunk right -->
+      <path d="M 1310 900 C 1305 820 1295 730 1282 640 C 1272 565 1260 495 1252 430
+               C 1244 365 1240 308 1245 268 C 1248 248 1252 232 1256 220
+               L 1252 220 C 1248 232 1244 250 1241 270
+               C 1236 312 1240 370 1248 436
+               C 1256 502 1268 572 1278 648
+               C 1291 738 1301 828 1306 900 Z"/>
+      <!-- frond 1 sweep left-up -->
+      <path d="M 1254 222 C 1232 208 1195 188 1155 168 C 1128 154 1100 140 1078 130
+               C 1100 142 1128 158 1154 172 C 1194 192 1230 212 1252 228 Z"/>
+      <path d="M 1254 222 C 1228 204 1188 180 1144 156 C 1116 140 1086 126 1062 114
+               C 1086 128 1114 144 1142 160 C 1186 186 1226 210 1252 228 Z"/>
+      <!-- frond 2 sweep right -->
+      <path d="M 1256 222 C 1282 206 1322 186 1365 170 C 1390 160 1415 152 1435 146
+               C 1415 154 1390 164 1364 176 C 1320 194 1280 216 1256 232 Z"/>
+      <path d="M 1256 222 C 1284 204 1328 180 1374 160 C 1400 148 1428 138 1450 130
+               C 1428 140 1400 152 1374 164 C 1328 186 1284 212 1256 232 Z"/>
+      <!-- frond up-left -->
+      <path d="M 1254 220 C 1240 198 1218 166 1192 136 C 1174 114 1154 96 1138 82
+               C 1154 98 1174 118 1190 140 C 1216 170 1238 202 1252 226 Z"/>
+      <!-- frond straight up -->
+      <path d="M 1255 220 C 1252 192 1248 154 1244 118 C 1242 96 1238 74 1236 54
+               C 1238 74 1242 98 1245 120 C 1249 158 1252 196 1255 226 Z"/>
+      <path d="M 1256 220 C 1260 192 1266 154 1272 118 C 1275 96 1280 74 1282 54
+               C 1280 74 1275 98 1272 122 C 1266 160 1260 198 1256 226 Z"/>
+    </g>
+
+    <!-- SMALL BACKGROUND PALMS (depth) -->
+    <g fill="#0d1a10" opacity="0.38">
+      <path d="M 340 900 C 342 850 340 800 336 750 C 333 710 330 670 332 635
+               C 334 605 337 580 340 560 L 336 560 C 333 580 330 606 328 636
+               C 326 672 329 712 332 752 C 336 802 338 852 336 900 Z"/>
+      <path d="M 340 562 C 325 550 302 534 278 520 C 262 510 246 502 232 496
+               C 246 504 262 514 278 524 C 302 540 324 556 338 568 Z"/>
+      <path d="M 340 562 C 356 548 378 532 402 518 C 418 508 434 500 448 494
+               C 434 502 418 512 402 524 C 378 540 356 556 342 568 Z"/>
+      <path d="M 340 562 C 338 542 334 515 330 488 C 328 470 324 452 322 436
+               C 324 453 328 472 330 490 C 334 518 338 546 340 568 Z"/>
+    </g>
+
+    <!-- MIDDLE DISTANT PALM -->
+    <g fill="#0d1a10" opacity="0.22">
+      <path d="M 720 900 C 720 860 718 815 715 772 C 712 740 708 708 708 680
+               C 708 656 710 635 712 620 L 708 620 C 706 636 704 658 704 682
+               C 704 712 708 744 711 776 C 714 820 716 866 716 900 Z"/>
+      <path d="M 710 622 C 696 610 676 596 654 582 C 640 572 626 564 614 558
+               C 626 566 640 576 654 586 C 676 600 696 616 710 628 Z"/>
+      <path d="M 712 622 C 726 608 748 592 772 578 C 786 568 802 560 814 554
+               C 802 562 786 572 772 582 C 748 598 726 616 712 628 Z"/>
+      <path d="M 710 622 C 700 604 688 580 676 556 C 668 538 660 522 654 508
+               C 660 522 668 540 676 558 C 688 582 700 608 710 628 Z"/>
+      <path d="M 712 622 C 722 604 736 580 750 556 C 758 538 766 520 772 506
+               C 766 522 758 540 750 558 C 736 584 722 610 712 630 Z"/>
+    </g>
+  </svg>
+
+  <div class="hero-text">
+    <span class="hero-eyebrow">Treasure Coast, Florida &nbsp;·&nbsp; Est. 2018</span>
+    <h1 class="hero-h1">Lydia Bogachov<br><em>Wedding Photography</em></h1>
+    <p class="hero-sub">Available Worldwide &nbsp;·&nbsp; Rustic Moon Photo</p>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
 <!-- INTRO -->
 <section id="intro">
-  <span class="intro-label rv">Est. 2018</span>
-  <p class="intro-body rv d1">Every wedding has a quiet centre — a glance across a room, a hand held a moment longer than needed. <em>Lydia's work is finding it.</em></p>
-  <p class="intro-sub rv d2">Candid, unhurried, and deeply personal. No posing, no rushing — just the day as it actually happened.</p>
+  <div class="intro-left rv">
+    <span class="intro-year">Est. 2018</span>
+    <div class="intro-loc">
+      <strong>Stuart, Florida</strong>
+      Treasure Coast<br/>Available Worldwide
+    </div>
+    <div class="intro-divider"></div>
+    <!-- small palm ornament -->
+    <svg width="48" height="64" viewBox="0 0 48 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M24 64 C24 50 23 36 22 24 C21 16 20 10 20 6 L22 6 C22 10 23 16 24 24 C25 16 26 10 26 6 L28 6 C28 10 27 16 26 24 C25 36 24 50 24 64Z" fill="#2e7060" opacity="0.4"/>
+      <path d="M22 8 C18 4 12 0 4 -2" stroke="#2e7060" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+      <path d="M24 7 C20 2 16 -2 10 -6" stroke="#2e7060" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+      <path d="M25 8 C30 3 36 -1 44 -3" stroke="#2e7060" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+      <path d="M26 7 C32 2 38 -2 46 -5" stroke="#2e7060" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+      <path d="M23 7 C22 2 21 -4 21 -10" stroke="#2e7060" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+    </svg>
+  </div>
+  <div>
+    <p class="intro-body rv d1">
+      Every wedding has a quiet centre — a glance across a room, hands held a moment longer than needed.
+      <em>Lydia's work is finding it.</em>
+    </p>
+    <p class="intro-note rv d2">
+      Candid, unhurried, and deeply personal. No posing, no rushing —
+      just the day as it actually happened, on the Treasure Coast and beyond.
+    </p>
+  </div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <div class="port-header rv">
-    <span class="port-label">Selected Work</span>
-    <a href="#contact" class="port-cta">Inquire about your date →</a>
+  <div class="port-head rv">
+    <span class="section-label">Selected Work</span>
+    <a href="#contact" class="port-link">Inquire about your date →</a>
   </div>
 
-  <div class="pf-row pf-single rv">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=2200&q=90" alt="Ceremony"/>
-  </div>
-
-  <div class="pf-row pf-pair">
-    <div class="rv">
+  <div class="pf-mosaic">
+    <div class="pf-cell pf-a rv">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=88" alt="Wedding ceremony"/>
+    </div>
+    <div class="pf-cell pf-b rv d1">
       <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1200&q=85" alt="Ceremony"/>
     </div>
-    <div class="rv d1">
-      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1200&q=85" alt="Portrait"/>
+    <div class="pf-cell pf-c rv d2">
+      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1000&q=85" alt="Portrait"/>
     </div>
-  </div>
-
-  <div class="pf-row pf-pair-lg">
-    <div class="rv">
-      <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1400&q=85" alt="Story"/>
-    </div>
-    <div class="rv d2">
-      <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1000&q=85" alt="Couple"/>
-    </div>
-  </div>
-
-  <div class="pf-row pf-trio">
-    <div class="rv">
+    <div class="pf-cell pf-d rv">
       <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=82" alt="Details"/>
     </div>
-    <div class="rv d1">
+    <div class="pf-cell pf-e rv d1">
       <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=900&q=82" alt="Elopement"/>
     </div>
-    <div class="rv d2">
-      <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=900&q=82" alt="Portraits"/>
+    <div class="pf-cell pf-f rv">
+      <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1400&q=85" alt="Story"/>
+    </div>
+    <div class="pf-cell pf-g rv d1">
+      <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1000&q=85" alt="Couple"/>
+    </div>
+    <div class="pf-cell pf-h rv d2">
+      <img src="https://images.unsplash.com/photo-1525772764200-be829a350797?w=1000&q=82" alt="Portraits"/>
+    </div>
+    <div class="pf-cell pf-i rv d1">
+      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=85" alt="Wedding"/>
     </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-img rv">
-    <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1400&q=88" alt="Lydia Bogachov"/>
-  </div>
-  <div class="about-copy">
-    <p class="about-tag rv">About Lydia</p>
-    <h2 class="about-title rv d1">A quiet presence<br><em>in your biggest moments.</em></h2>
-    <p class="rv d2">Lydia doesn't direct — she observes. Her work is built on trust developed over months of conversations, not poses arranged in minutes. She arrives before the day begins and stays until it ends.</p>
-    <p class="rv d2">Based in Stuart, Florida. Photographing weddings, elopements, and lifestyle sessions on the Treasure Coast and beyond.</p>
-    <a href="#contact" class="text-link rv d3">Work with Lydia</a>
+  <div class="about-inner">
+    <div class="about-photo-wrap rv">
+      <div class="about-photo">
+        <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1400&q=88" alt="Lydia Bogachov"/>
+      </div>
+      <div class="about-stamp">
+        <p>Stuart, Florida<br/>Treasure Coast</p>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="about-tag rv">About Lydia</span>
+      <h2 class="about-title rv d1">A quiet presence<br><em>in your biggest moments.</em></h2>
+      <p class="rv d2">Lydia doesn't direct — she observes. Her work is built on trust developed over months of conversation, not poses arranged in minutes. She arrives before the day begins and stays until it ends.</p>
+      <p class="rv d2">Based in Stuart, Florida. Photographing weddings, elopements, and lifestyle sessions on the Treasure Coast and beyond — wherever the light is worth chasing.</p>
+      <a href="#contact" class="text-link rv d3">Work with Lydia</a>
+    </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services">
-  <div class="services-header">
-    <div class="rv">
-      <p class="services-tag">Services</p>
-      <h2 class="services-title">What I <em>offer</em></h2>
-    </div>
-    <p class="services-note rv d1">Every session is personal. Packages are built around you, not the other way around.</p>
-  </div>
+<section id="services" class="stripe-bg">
+  <!-- big background palm -->
+  <svg class="services-palm-bg" width="500" height="700" viewBox="0 0 200 280"
+       xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M100 280 C100 240 98 195 95 152 C92 118 89 88 89 65 C89 48 91 34 93 24 L95 24 C93 34 91 50 91 67 C91 90 94 120 97 154 C100 198 102 244 102 280Z" fill="white"/>
+    <path d="M93 26 C80 14 60 3 36 -5" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <path d="M92 22 C75 8 54 -4 28 -14" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M95 24 C88 6 78 -12 62 -28" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M96 22 C96 4 94 -16 88 -34" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M97 24 C106 6 118 -12 136 -26" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M98 26 C110 8 126 -4 148 -14" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M100 28 C118 16 140 6 164 -2" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </svg>
 
-  <div class="service-item rv">
-    <div>
-      <div class="service-name">Weddings &amp; Elopements</div>
-      <p class="service-desc">Full-day coverage from the quiet morning hours to the last dance. Documentary in approach, cinematic in result.</p>
+  <div class="services-inner">
+    <div class="rv">
+      <span class="services-tag">Services</span>
+      <h2 class="services-title">What I<br><em>offer</em></h2>
+      <p class="services-note">Every session is personal. Packages are built around you — not the other way around.</p>
     </div>
-    <span class="service-duration">Full Day</span>
-  </div>
-  <div class="service-item rv">
-    <div>
-      <div class="service-name">Engagements &amp; Portraits</div>
-      <p class="service-desc">A relaxed session before the wedding — a chance to get comfortable together. Golden hour preferred.</p>
+    <div class="service-list">
+      <div class="svc rv">
+        <div>
+          <div class="svc-name">Weddings &amp; Elopements</div>
+          <p class="svc-desc">Full-day coverage from the quiet morning hours to the last dance. Documentary in approach, cinematic in result.</p>
+        </div>
+        <span class="svc-dur">Full Day</span>
+      </div>
+      <div class="svc rv d1">
+        <div>
+          <div class="svc-name">Engagements &amp; Portraits</div>
+          <p class="svc-desc">A relaxed session before the wedding — a chance to get comfortable together. Golden hour preferred.</p>
+        </div>
+        <span class="svc-dur">2–3 hrs</span>
+      </div>
+      <div class="svc rv d2">
+        <div>
+          <div class="svc-name">Lifestyle &amp; Maternity</div>
+          <p class="svc-desc">Life's most tender milestones, photographed with care and without hurry. Home sessions welcome.</p>
+        </div>
+        <span class="svc-dur">2 hrs</span>
+      </div>
     </div>
-    <span class="service-duration">2–3 Hours</span>
-  </div>
-  <div class="service-item rv">
-    <div>
-      <div class="service-name">Lifestyle &amp; Maternity</div>
-      <p class="service-desc">Life's most tender milestones, photographed with care and without hurry. Home sessions welcome.</p>
-    </div>
-    <span class="service-duration">2 Hours</span>
   </div>
 </section>
 
-<!-- QUOTE -->
-<section id="quote">
-  <div class="quote-img rv">
-    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=88" alt="Wedding"/>
-  </div>
-  <div class="rv d2">
-    <span class="quote-mark">&ldquo;</span>
-    <p class="quote-text">She blended into the background completely and caught every single moment that mattered. When the gallery arrived we sat down and cried for an hour.</p>
-    <p class="quote-author">Sarah &amp; James Ford &mdash; Stuart, FL &middot; 2024</p>
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="testimonial-inner">
+    <div class="test-img rv">
+      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=88" alt="Wedding"/>
+    </div>
+    <div class="rv d2">
+      <span class="test-quote-mark">&ldquo;</span>
+      <p class="test-text">She blended into the background completely and caught every single moment that mattered. When the gallery arrived we sat down and cried for an hour.</p>
+      <p class="test-author">Sarah &amp; James Ford &mdash; Stuart, FL &middot; 2024</p>
+      <div class="test-ornament">
+        <div class="test-ornament-line"></div>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 0 C7 0 6.5 3 5 5 C3.5 7 0 7 0 7 C0 7 3.5 7 5 9 C6.5 11 7 14 7 14 C7 14 7.5 11 9 9 C10.5 7 14 7 14 7 C14 7 10.5 7 9 5 C7.5 3 7 0 7 0Z" fill="#c4532a" opacity="0.5"/>
+        </svg>
+        <div class="test-ornament-line"></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
   <div class="rv">
-    <p class="contact-tag">Get in Touch</p>
+    <span class="contact-tag">Get in Touch</span>
     <h2 class="contact-title">Let's make something<br><em>worth keeping.</em></h2>
     <p class="contact-body">Lydia photographs a small number of weddings each year so every couple receives her full attention. Reach out early — dates fill months ahead.</p>
-    <p class="contact-avail">Currently booking 2025 &amp; 2026</p>
+    <span class="contact-avail">Currently booking 2025 &amp; 2026</span>
   </div>
   <div class="contact-right rv d2">
     <p>Reach out and Lydia will be in touch within 48 hours. You'll hear from her directly — no assistants, no automated replies.</p>
     <div>
       <a href="mailto:hello@rusticmoonphoto.com" class="btn-primary">Send an Email</a>
-      <a href="https://www.instagram.com/rusticmoonphoto/" target="_blank" class="btn-ghost">Instagram</a>
+      <a href="https://www.instagram.com/rusticmoonphoto/" target="_blank" rel="noopener" class="btn-ghost">Instagram</a>
     </div>
   </div>
 </section>
@@ -742,10 +1144,10 @@ footer {
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <span class="footer-logo">Rustic Moon</span>
+      <span class="footer-brand-name">Rustic Moon</span>
       <p>Wedding &amp; lifestyle photography by Lydia Bogachov. Treasure Coast, Florida. Available worldwide.</p>
     </div>
-    <div class="footer-links">
+    <div class="footer-nav">
       <div class="footer-col">
         <h5>Navigate</h5>
         <ul>
@@ -759,7 +1161,7 @@ footer {
         <h5>Contact</h5>
         <ul>
           <li><a href="mailto:hello@rusticmoonphoto.com">Email</a></li>
-          <li><a href="https://www.instagram.com/rusticmoonphoto/" target="_blank">Instagram</a></li>
+          <li><a href="https://www.instagram.com/rusticmoonphoto/" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </div>
     </div>
@@ -774,16 +1176,18 @@ footer {
 </footer>
 
 <script>
+// nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+}, {passive: true});
 
+// reveal on scroll
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   });
-}, { threshold: 0.07 });
+}, {threshold: 0.06});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 </script>
 </body>
