@@ -381,234 +381,234 @@ nav:not(.on) .logo img{
 .link-natural:hover{color:var(--clay);border-color:var(--clay)}
 
 /* ─── SERVICES ───────────────────────────────────── */
-#services{
-  background:var(--bark);
-}
+#services{ background:var(--bark); }
+
 .svc-panel{
   position:relative;
-  height:62vh;
-  min-height:380px;
-  overflow:hidden;
-  display:block;
+  height:58vh;min-height:360px;
+  overflow:hidden;display:block;
 }
+.svc-panel + .svc-panel{ border-top:2px solid rgba(242,232,208,.06); }
 .svc-panel img{
   position:absolute;inset:0;
-  width:100%;height:100%;
-  object-fit:cover;
-  filter:brightness(.68) saturate(.85) sepia(.38) contrast(1.08);
-  transition:transform 1.2s cubic-bezier(.22,1,.36,1), filter .6s;
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.6) saturate(.9) sepia(.3) contrast(1.1);
+  transition:transform 1.4s cubic-bezier(.22,1,.36,1), filter .7s;
 }
 .svc-panel:hover img{
-  transform:scale(1.05);
-  filter:brightness(.75) saturate(.9) sepia(.3) contrast(1.06);
+  transform:scale(1.06);
+  filter:brightness(.7) saturate(.95) sepia(.2) contrast(1.08);
 }
-/* warm vignette on each panel */
+/* bottom-to-top gradient so text sits on dark */
 .svc-panel::before{
-  content:'';
-  position:absolute;inset:0;z-index:1;
-  background:linear-gradient(
-    135deg,
-    rgba(30,18,8,.45) 0%,
-    transparent 60%
+  content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to top,
+    rgba(22,35,26,.82) 0%,
+    rgba(22,35,26,.3) 40%,
+    transparent 70%
   );
 }
-/* the stamp label */
-.svc-label{
-  position:absolute;
-  top:36px;right:44px;
-  z-index:2;
-  background:var(--wood, #7a5a36);
-  padding:16px 28px;
+/* stamp label top-right */
+.svc-stamp{
+  position:absolute;top:40px;right:48px;z-index:2;
+  background:#6b4a28;
+  padding:14px 26px;
 }
-.svc-label-name{
+.svc-stamp span{
   font-family:'DM Sans',sans-serif;
-  font-size:.72rem;
-  letter-spacing:.28em;
-  text-transform:uppercase;
+  font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
   color:var(--paper);
-  display:block;
 }
-/* bottom text strip */
-.svc-info{
-  position:absolute;
-  bottom:36px;left:44px;
-  z-index:2;
+/* text bottom-left */
+.svc-copy{
+  position:absolute;bottom:44px;left:52px;z-index:2;
 }
-.svc-info-dur{
+.svc-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,3.8vw,3.8rem);
+  font-weight:300;
+  line-height:1;color:var(--paper);
+  margin-bottom:12px;
+}
+.svc-name em{ font-style:italic; }
+.svc-dur{
   font-family:'DM Sans',sans-serif;
-  font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;
+  font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;
   color:rgba(242,232,208,.45);
-  display:block;margin-bottom:8px;
+  display:block;margin-bottom:10px;
 }
-.svc-info-desc{
-  font-family:'Lora',serif;
+.svc-desc{
+  font-family:'Cormorant Garamond',serif;
   font-style:italic;
-  font-size:clamp(.9rem,1.4vw,1.15rem);
-  color:rgba(242,232,208,.7);
-  max-width:480px;
-  line-height:1.6;
+  font-size:clamp(1rem,1.4vw,1.2rem);
+  color:rgba(242,232,208,.65);
+  max-width:520px;line-height:1.65;
 }
 
-/* ─── TESTIMONIAL ────────────────────────────────── */
-#testimonial{
-  background:var(--fern);
-  padding:100px 52px;
-  position:relative;overflow:hidden;
+/* ─── QUOTE (full-bleed Florida photo) ───────────── */
+#quote{
+  position:relative;
+  min-height:70vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  text-align:center;
 }
-#testimonial::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background-image:repeating-linear-gradient(
-    -3deg,
-    transparent,
-    transparent 22px,
-    rgba(255,255,255,.015) 22px,
-    rgba(255,255,255,.015) 23px
-  );
-}
-.test-inner{
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-  position:relative;z-index:1;
-}
-.test-img{height:480px;overflow:hidden;position:relative}
-.test-img img{
+#quote img.quote-bg{
+  position:absolute;inset:0;
   width:100%;height:100%;object-fit:cover;
-  filter:brightness(.78) contrast(1.05) saturate(.65) sepia(.18);
+  filter:brightness(.45) saturate(.7) sepia(.35) contrast(1.1);
 }
-.test-img::after{
-  content:'';position:absolute;inset:0;
-  box-shadow:inset 0 0 80px rgba(42,58,30,.6);
-  pointer-events:none;
+#quote::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse 70% 80% at 50% 50%,
+    transparent 30%, rgba(14,18,8,.65) 100%);
 }
-.test-mark{
+.quote-inner{
+  position:relative;z-index:2;
+  max-width:780px;
+  padding:80px 52px;
+}
+.quote-mark-big{
   font-family:'Cormorant Garamond',serif;
-  font-size:5rem;line-height:.7;
-  color:var(--clay);opacity:.35;
-  display:block;margin-bottom:20px;
+  font-size:8rem;line-height:.5;
+  color:var(--clay);opacity:.4;
+  display:block;margin-bottom:28px;
 }
-.test-body{
-  font-family:'Lora',serif;font-style:italic;
-  font-size:clamp(1.15rem,1.8vw,1.55rem);
-  line-height:1.65;
+.quote-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.5rem,2.6vw,2.4rem);
+  font-weight:300;
+  line-height:1.55;
   color:var(--paper);
-  margin-bottom:26px;
+  margin-bottom:32px;
 }
-.test-author{
+.quote-attr{
   font-family:'DM Sans',sans-serif;
-  font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
-  color:rgba(242,232,208,.45);
+  font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(242,232,208,.4);
 }
-.test-reed{
-  margin-top:36px;
-  display:flex;align-items:center;gap:10px;
+.quote-line{
+  width:40px;height:1px;
+  background:var(--clay);opacity:.5;
+  margin:20px auto;
 }
-.reed-line{flex:1;height:1px;background:rgba(242,232,208,.15)}
 
 /* ─── CONTACT ────────────────────────────────────── */
 #contact{
-  background:var(--paper);
-  padding:100px 52px;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+.ct-photo{
   position:relative;
+  min-height:560px;overflow:hidden;
+}
+.ct-photo img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(.7) saturate(.8) sepia(.2) contrast(1.05);
+}
+.ct-photo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right, transparent 70%, var(--paper));
+}
+.ct-body-wrap{
+  background:var(--paper);
+  padding:80px 60px 80px 52px;
+  display:flex;flex-direction:column;justify-content:center;
 }
 .ct-tag{
   font-family:'DM Sans',sans-serif;
-  font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--clay);display:block;margin-bottom:20px;
+  font-size:.56rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--clay);display:block;margin-bottom:18px;
 }
 .ct-h2{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.4rem,4vw,4.2rem);
-  line-height:1.0;
-  color:var(--bark);
-  margin-bottom:24px;
+  font-size:clamp(2.6rem,4vw,4.4rem);
+  font-weight:300;line-height:1.0;
+  color:var(--bark);margin-bottom:22px;
 }
-.ct-h2 em{font-family:'Lora',serif;font-style:italic}
-.ct-body{
+.ct-h2 em{ font-style:italic; }
+.ct-p{
   font-size:.88rem;line-height:2;
-  color:var(--mist);max-width:380px;margin-bottom:28px;
+  color:var(--mist);max-width:360px;margin-bottom:14px;
 }
 .ct-avail{
   font-family:'DM Sans',sans-serif;
-  font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--spring);
+  font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--spring);display:block;margin-bottom:36px;
 }
-.ct-right{padding-top:4px}
-.ct-right p{
-  font-size:.88rem;line-height:2;
-  color:var(--mist);max-width:380px;margin-bottom:36px;
-}
-.btn-bark{
-  display:inline-block;
+.ct-btns{ display:flex;flex-wrap:wrap;gap:12px; }
+.btn-solid{
   font-family:'DM Sans',sans-serif;
   font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
   padding:15px 38px;
   background:var(--bark);color:var(--paper);
-  transition:background .3s;margin-right:10px;
+  transition:background .3s;
 }
-.btn-bark:hover{background:var(--cypress)}
-.btn-outline{
-  display:inline-block;
+.btn-solid:hover{ background:var(--cypress); }
+.btn-ghost{
   font-family:'DM Sans',sans-serif;
   font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
   padding:15px 38px;
   border:1px solid rgba(30,18,8,.2);color:var(--mist);
   transition:border-color .25s,color .25s;
 }
-.btn-outline:hover{border-color:var(--bark);color:var(--bark)}
+.btn-ghost:hover{ border-color:var(--bark);color:var(--bark); }
 
 /* ─── FOOTER ─────────────────────────────────────── */
 footer{
   background:var(--bark);
-  position:relative;overflow:hidden;
-  padding:0 52px 36px;
+  padding:64px 52px 32px;
+  position:relative;
 }
+/* top gradient stripe */
 footer::before{
-  content:'';display:block;
-  height:3px;
-  background:linear-gradient(to right, var(--clay), var(--spring), var(--fern));
-  margin-bottom:64px;
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--clay),var(--spring),var(--fern));
 }
-.footer-grid{
-  display:grid;grid-template-columns:1fr auto;gap:60px;
-  padding-bottom:48px;
-  border-bottom:1px solid rgba(242,232,208,.07);
+.footer-inner{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:60px;
+  padding-bottom:44px;
+  border-bottom:1px solid rgba(242,232,208,.08);
   margin-bottom:22px;
 }
-.footer-brand-name{
-  display:block;margin-bottom:14px;
-}
-.footer-brand-name img{
-  height:48px;width:auto;
+.footer-logo img{
+  height:52px;width:auto;
   filter:brightness(0) invert(1);
-  opacity:.7;
+  opacity:.6;
+  margin-bottom:12px;
 }
-.footer-brand p{
+.footer-tagline{
   font-size:.76rem;line-height:1.9;
-  color:rgba(242,232,208,.25);max-width:250px;
+  color:rgba(242,232,208,.22);
+  max-width:220px;
 }
-.footer-nav-cols{display:flex;gap:52px}
-.footer-col h5{
+.footer-cols{ display:flex;gap:52px; }
+.fc h5{
   font-family:'DM Sans',sans-serif;
-  font-size:.54rem;letter-spacing:.28em;text-transform:uppercase;
-  color:rgba(242,232,208,.25);margin-bottom:16px;
+  font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(242,232,208,.22);margin-bottom:14px;
 }
-.footer-col ul{list-style:none}
-.footer-col li{margin-bottom:10px}
-.footer-col a{
-  font-size:.76rem;color:rgba(242,232,208,.32);
+.fc ul{ list-style:none; }
+.fc li{ margin-bottom:10px; }
+.fc a{
+  font-size:.78rem;color:rgba(242,232,208,.3);
   transition:color .25s;
 }
-.footer-col a:hover{color:rgba(242,232,208,.7)}
-.footer-bottom{
+.fc a:hover{ color:rgba(242,232,208,.7); }
+.footer-bar{
   display:flex;justify-content:space-between;align-items:center;
 }
-.footer-bottom p,.footer-bottom a{
+.footer-bar p, .footer-bar a{
   font-family:'DM Sans',sans-serif;
-  font-size:.56rem;letter-spacing:.06em;
-  color:rgba(242,232,208,.15);transition:color .25s;
+  font-size:.54rem;letter-spacing:.06em;
+  color:rgba(242,232,208,.14);transition:color .25s;
 }
-.footer-bottom a:hover{color:rgba(242,232,208,.38)}
-.footer-bottom-links{display:flex;gap:22px}
+.footer-bar a:hover{ color:rgba(242,232,208,.35); }
+.footer-bar-links{ display:flex;gap:20px; }
 
 /* ─── REVEAL ─────────────────────────────────────── */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
@@ -617,14 +617,15 @@ footer::before{
 
 /* ─── RESPONSIVE ─────────────────────────────────── */
 @media(max-width:960px){
-  .intro-grid,.about-inner,.test-inner,#contact{
-    grid-template-columns:1fr;gap:48px;
+  .intro-grid,.about-inner,#contact{
+    grid-template-columns:1fr;gap:0;
   }
-  .svc-panel{height:44vw;min-height:260px}
-  .svc-label{top:22px;right:22px;padding:12px 18px}
-  .svc-info{bottom:22px;left:22px}
+  .ct-photo{min-height:340px}
+  .ct-body-wrap{padding:60px 40px}
+  .svc-panel{height:52vw;min-height:300px}
+  .svc-stamp{top:20px;right:20px;padding:10px 16px}
+  .svc-copy{bottom:24px;left:28px}
   .about-photo{height:420px}
-  .test-img{height:320px}
   .pf-grid{grid-template-columns:1fr 1fr;gap:10px}
   .pc-1,.pc-2,.pc-3,.pc-4,.pc-5,.pc-6{grid-column:auto;height:42vw;max-height:none}
 }
@@ -810,113 +811,79 @@ footer::before{
   </div>
 </section>
 
-<!-- wave into services -->
-<div class="wave" style="background:#d8c49a">
-  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0,52 L0,28 C360,52 720,4 1080,24 C1200,30 1320,44 1440,34 L1440,52 Z" fill="#1e1208"/>
-  </svg>
-</div>
-
 <!-- ═══════════════ SERVICES ═══════════════ -->
 <section id="services">
+
   <div class="svc-panel rv">
-    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=90" alt="Palm canopy"/>
-    <div class="svc-label">
-      <span class="svc-label-name">Weddings &amp; Elopements</span>
-    </div>
-    <div class="svc-info">
-      <span class="svc-info-dur">Full Day</span>
-      <p class="svc-info-desc">From the quiet morning hours to the last dance — documentary in approach, cinematic in result.</p>
+    <img src="https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=2400&q=90" alt="Looking up through Florida palms"/>
+    <div class="svc-stamp"><span>Weddings &amp; Elopements</span></div>
+    <div class="svc-copy">
+      <span class="svc-dur">Full Day</span>
+      <h3 class="svc-name">Where the day<br><em>unfolds naturally.</em></h3>
+      <p class="svc-desc">From the quiet morning hours to the last dance — documentary in approach, cinematic in result.</p>
     </div>
   </div>
 
   <div class="svc-panel rv">
-    <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=2400&q=90" alt="Golden hour palms"/>
-    <div class="svc-label">
-      <span class="svc-label-name">Engagements &amp; Portraits</span>
-    </div>
-    <div class="svc-info">
-      <span class="svc-info-dur">2–3 Hours</span>
-      <p class="svc-info-desc">A relaxed session before the wedding — a chance to get comfortable together. Golden hour preferred.</p>
+    <img src="https://images.unsplash.com/photo-1516815231560-8f41ec531527?w=2400&q=90" alt="Palm silhouette at golden hour"/>
+    <div class="svc-stamp"><span>Engagements &amp; Portraits</span></div>
+    <div class="svc-copy">
+      <span class="svc-dur">2–3 Hours</span>
+      <h3 class="svc-name">Golden hour,<br><em>just the two of you.</em></h3>
+      <p class="svc-desc">A relaxed session to get comfortable together before the big day. Golden hour preferred.</p>
     </div>
   </div>
 
   <div class="svc-panel rv">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&q=90" alt="Florida palms at sunset"/>
-    <div class="svc-label">
-      <span class="svc-label-name">Lifestyle &amp; Maternity</span>
-    </div>
-    <div class="svc-info">
-      <span class="svc-info-dur">2 Hours</span>
-      <p class="svc-info-desc">Life's most tender milestones, photographed with care and without hurry. Home sessions welcome.</p>
+    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=2400&q=90" alt="Tropical Florida coast"/>
+    <div class="svc-stamp"><span>Lifestyle &amp; Maternity</span></div>
+    <div class="svc-copy">
+      <span class="svc-dur">2 Hours</span>
+      <h3 class="svc-name">Life's most<br><em>tender milestones.</em></h3>
+      <p class="svc-desc">Photographed with care and without hurry. Home sessions and outdoor sessions both welcome.</p>
     </div>
   </div>
+
 </section>
 
-<!-- wave into testimonial -->
-<div class="wave" style="background:#f2e8d0">
-  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0,0 L1440,0 L1440,32 C960,52 480,8 0,28 Z" fill="#3d5a2e"/>
-  </svg>
-</div>
-
-<!-- ═══════════════ TESTIMONIAL ═══════════════ -->
-<section id="testimonial">
-  <div class="test-inner">
-    <div class="test-img rv">
-      <img src="https://static.wixstatic.com/media/979953_1d35b5c0d3ee43e88784ce00f4bbce2f~mv2.jpg" alt="Wedding"/>
-    </div>
-    <div class="rv d2">
-      <span class="test-mark">&ldquo;</span>
-      <p class="test-body">She blended into the background completely and caught every single moment that mattered. When the gallery arrived we sat down and cried for an hour.</p>
-      <p class="test-author">Sarah &amp; James Ford &mdash; Stuart, FL &middot; 2024</p>
-      <div class="test-reed">
-        <div class="reed-line"></div>
-        <!-- small heron silhouette ornament -->
-        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M11 2 C11 2 9.5 5 8 7 C6.5 9 4 10 4 10 C4 10 6.5 11 8 13 C9.5 15 11 20 11 20 C11 20 12.5 15 14 13 C15.5 11 18 10 18 10 C18 10 15.5 9 14 7 C12.5 5 11 2 11 2Z" fill="#d8c49a" opacity="0.4"/>
-        </svg>
-        <div class="reed-line"></div>
-      </div>
-    </div>
+<!-- ═══════════════ QUOTE ═══════════════ -->
+<section id="quote">
+  <img class="quote-bg" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=2400&q=88" alt="Florida at dusk"/>
+  <div class="quote-inner rv">
+    <span class="quote-mark-big">&ldquo;</span>
+    <p class="quote-text">She blended into the background completely and caught every single moment that mattered. When the gallery arrived we sat down and cried for an hour.</p>
+    <div class="quote-line"></div>
+    <p class="quote-attr">Sarah &amp; James Ford &nbsp;&middot;&nbsp; Stuart, FL &nbsp;&middot;&nbsp; 2024</p>
   </div>
 </section>
-
-<!-- wave into contact -->
-<div class="wave" style="background:#3d5a2e">
-  <svg viewBox="0 0 1440 52" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-    <path d="M0,52 L0,26 C360,52 720,4 1080,28 C1200,36 1320,48 1440,40 L1440,52 Z" fill="#f2e8d0"/>
-  </svg>
-</div>
 
 <!-- ═══════════════ CONTACT ═══════════════ -->
 <section id="contact">
-  <div class="rv">
-    <span class="ct-tag">Get in Touch</span>
-    <h2 class="ct-h2">Let's make<br>something<br><em>worth keeping.</em></h2>
-    <p class="ct-body">Lydia photographs a small number of weddings each year so every couple receives her full attention. Reach out early — dates fill months ahead.</p>
-    <span class="ct-avail">Currently booking 2025 &amp; 2026</span>
+  <div class="ct-photo rv">
+    <img src="https://static.wixstatic.com/media/979953_5f3b59becf7242feb901874dcb28f753~mv2.jpg" alt="Lydia Bogachov"/>
   </div>
-  <div class="ct-right rv d2">
-    <p>Reach out and Lydia will be in touch within 48 hours. You'll hear from her directly — no assistants, no automated replies.</p>
-    <div>
-      <a href="mailto:hello@rusticmoonphoto.com" class="btn-bark">Send an Email</a>
-      <a href="https://www.instagram.com/rusticmoonphoto/" target="_blank" rel="noopener" class="btn-outline">Instagram</a>
+  <div class="ct-body-wrap">
+    <span class="ct-tag rv">Get in Touch</span>
+    <h2 class="ct-h2 rv d1">Let's make<br>something<br><em>worth keeping.</em></h2>
+    <p class="ct-p rv d2">Lydia photographs a small number of weddings each year so every couple receives her full attention. Reach out early — dates fill months ahead.</p>
+    <p class="ct-p rv d2">You'll hear from her directly within 48 hours. No assistants, no automated replies.</p>
+    <span class="ct-avail rv d2">Currently booking 2025 &amp; 2026</span>
+    <div class="ct-btns rv d3">
+      <a href="mailto:hello@rusticmoonphoto.com" class="btn-solid">Send an Email</a>
+      <a href="https://www.instagram.com/rusticmoonphoto/" target="_blank" rel="noopener" class="btn-ghost">Instagram</a>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <span class="footer-brand-name">
-        <img src="https://static.wixstatic.com/media/979953_a7745fc6e725463e9e320d65ffd8055e~mv2.png" alt="Rustic Moon Photo"/>
-      </span>
-      <p>Wedding &amp; lifestyle photography by Lydia Bogachov. Treasure Coast, Florida. Available worldwide.</p>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="https://static.wixstatic.com/media/979953_a7745fc6e725463e9e320d65ffd8055e~mv2.png" alt="Rustic Moon Photo"/>
+      <p class="footer-tagline">Wedding &amp; lifestyle photography. Treasure Coast, Florida. Available worldwide.</p>
     </div>
-    <div class="footer-nav-cols">
-      <div class="footer-col">
+    <div class="footer-cols">
+      <div class="fc">
         <h5>Navigate</h5>
         <ul>
           <li><a href="#about">About</a></li>
@@ -925,7 +892,7 @@ footer::before{
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="fc">
         <h5>Contact</h5>
         <ul>
           <li><a href="mailto:hello@rusticmoonphoto.com">Email</a></li>
@@ -934,9 +901,9 @@ footer::before{
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
+  <div class="footer-bar">
     <p>&copy; 2025 Lydia Bogachov &middot; Rustic Moon Photo</p>
-    <div class="footer-bottom-links">
+    <div class="footer-bar-links">
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
     </div>
