@@ -63,6 +63,24 @@ nav.on{
   font-size:1.1rem;
   letter-spacing:.04em;
   color:var(--bark);
+  opacity:0;
+  transition:opacity .25s ease;
+}
+#splash-logo{
+  position:fixed;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Abril Fatface',serif;
+  font-size:clamp(3rem,7vw,5.5rem);
+  letter-spacing:.04em;
+  color:var(--paper);
+  text-shadow:0 2px 48px rgba(0,0,0,.35);
+  z-index:600;
+  opacity:0;
+  pointer-events:none;
+  white-space:nowrap;
+  transform-origin:center center;
+  transition:opacity .8s ease;
 }
 .nav-links{
   list-style:none;display:flex;gap:32px;
@@ -966,11 +984,56 @@ footer::before{
 </footer>
 
 <script>
+// ── LOGO INTRO ANIMATION ──────────────────────────
+(function() {
+  const navLogo = document.querySelector('.logo');
+
+  // Create splash element
+  const splash = document.createElement('div');
+  splash.id = 'splash-logo';
+  splash.textContent = 'Rustic Moon';
+  document.body.appendChild(splash);
+
+  // Fade in splash on next frame
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    splash.style.opacity = '1';
+  }));
+
+  // After logo has sat center-screen, fly it to the nav corner
+  setTimeout(() => {
+    const splashRect = splash.getBoundingClientRect();
+    const navRect   = navLogo.getBoundingClientRect();
+
+    // Center points
+    const sx = splashRect.left + splashRect.width  / 2;
+    const sy = splashRect.top  + splashRect.height / 2;
+    const tx = navRect.left    + navRect.width     / 2;
+    const ty = navRect.top     + navRect.height    / 2;
+
+    const scale = navRect.height / splashRect.height;
+    const dx    = tx - sx;
+    const dy    = ty - sy;
+
+    splash.style.transition = 'transform .75s cubic-bezier(.22,1,.36,1), opacity .35s ease';
+    splash.style.transform  = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`;
+
+    // Once it arrives, reveal the real nav logo and remove splash
+    setTimeout(() => {
+      navLogo.style.opacity = '1';
+      splash.style.opacity  = '0';
+      setTimeout(() => splash.remove(), 400);
+    }, 680);
+
+  }, 1500);
+})();
+
+// ── NAV SCROLL ────────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('on', window.scrollY > 50);
 }, {passive: true});
 
+// ── REVEAL ON SCROLL ──────────────────────────────
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
