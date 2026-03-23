@@ -391,7 +391,7 @@ nav:not(.on) .logo img{
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:.055;
+  opacity:.10;
 }
 .svc-top{
   display:grid;grid-template-columns:1fr 1fr;gap:80px;
@@ -811,122 +811,108 @@ footer::before{
   <!-- palm silhouettes background — realistic sabal palm silhouettes -->
   <svg class="svc-palms" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice"
        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!--
+    Each frond is a CLOSED filled shape with 30-50px base width.
+    Start/end points at crown are intentionally far apart so the leaf has real body.
+    Right palm is the left palm mirrored via transform.
+  -->
+  <defs>
+    <!-- One complete palm; referenced twice (normal + mirrored) -->
+    <g id="opalm">
+
+      <!-- TRUNK: tapered, slight rightward lean, widest at base -->
+      <path d="M 126,700 C 128,530 132,360 138,238
+               C 141,182 146,136 154,104
+               C 162,104 167,136 170,182
+               C 176,302 175,470 172,642 L 168,700 Z"/>
+
+      <!-- ── FROND 1: Big droopy-left  (the signature Florida sabal droop) ──
+           Outer edge: crown → sweeps far down-left → tip
+           Inner edge: tip → returns along inside of arc → crown
+           Base width ~42px (distance from M start to final point before Z) -->
+      <path d="
+        M 130,88
+        C 65,140 -5,248 -70,412
+        L -48,432
+        C 10,272 80,166 168,114
+        Z"/>
+
+      <!-- ── FROND 2: Left, arcing slightly downward ── base ~38px -->
+      <path d="
+        M 126,93
+        C 62,82 -16,68 -98,52
+        L -100,74
+        C -18,90 60,106 144,120
+        Z"/>
+
+      <!-- ── FROND 3: Upper-left ── base ~30px -->
+      <path d="
+        M 130,88
+        C 82,50 28,4 -32,-58
+        L -18,-68
+        C 44,4 100,50 158,106
+        Z"/>
+
+      <!-- ── FROND 4: Up-left, steep ── base ~28px -->
+      <path d="
+        M 138,86
+        C 114,36 90,-22 66,-98
+        L 82,-104
+        C 108,-28 132,24 164,102
+        Z"/>
+
+      <!-- ── FROND 5: Straight up, slight left bow ── base ~20px -->
+      <path d="
+        M 146,84
+        C 140,32 136,-34 132,-108
+        C 138,-112 150,-112 156,-108
+        C 158,-34 162,30 166,84
+        Z"/>
+
+      <!-- ── FROND 6: Up-right ── base ~28px -->
+      <path d="
+        M 156,86
+        C 180,36 208,-20 238,-94
+        L 252,-90
+        C 222,-18 194,36 166,102
+        Z"/>
+
+      <!-- ── FROND 7: Right, slight downward arc ── base ~34px -->
+      <path d="
+        M 162,94
+        C 228,82 316,66 412,48
+        L 416,68
+        C 318,86 230,102 162,118
+        Z"/>
+
+      <!-- ── FROND 8: Droopy-right counterpart ── base ~38px -->
+      <path d="
+        M 158,106
+        C 208,150 262,218 308,328
+        L 292,340
+        C 248,232 194,168 146,118
+        Z"/>
+
+      <!-- ── FROND 9: Dead hanging frond — straight down the trunk (sabal petticoat) ── -->
+      <path d="
+        M 150,114
+        C 144,180 136,276 124,388
+        L 136,390
+        C 148,280 158,182 166,118
+        Z"/>
+
+    </g><!-- /opalm -->
+  </defs>
+
     <g fill="#1a1208">
 
-      <!-- ══════════════════════════════════════════ -->
-      <!-- LEFT PALM — tall, slight rightward lean    -->
-      <!-- ══════════════════════════════════════════ -->
-      <!-- trunk: curved, widest at base, tapers to crown -->
-      <path d="M 122 700 C 124 580 128 440 134 310 C 138 220 142 155 148 108
-               C 156 108 162 155 166 220 C 172 350 174 490 172 610 L 168 700 Z"/>
+      <!-- LEFT PALM at x≈155 -->
+      <use href="#opalm"/>
 
-      <!-- droopy frond — far down-left, classic sabal droop -->
-      <path d="M 144 112 C 95 148 32 205 -42 295 C -48 308 -52 320 -50 328
-               C 2 242 65 185 138 145
-               C 140 134 142 124 144 112 Z"/>
-
-      <!-- frond — left, arcing slightly downward -->
-      <path d="M 140 108 C 80 100 0 88 -82 72 C -88 78 -88 86 -82 90
-               C -2 104 78 116 138 122
-               C 138 116 139 112 140 108 Z"/>
-
-      <!-- frond — upper-left, gentle arc -->
-      <path d="M 141 104 C 94 72 36 32 -28 -18 C -34 -24 -36 -18 -32 -10
-               C 34 42 92 82 142 114
-               C 142 111 141 108 141 104 Z"/>
-
-      <!-- frond — up-left, sweeping gracefully -->
-      <path d="M 143 100 C 116 54 84 0 50 -58 C 44 -68 38 -68 36 -60
-               C 70 -2 102 52 142 110
-               C 142 107 142 104 143 100 Z"/>
-
-      <!-- frond — nearly straight up, slight left bow -->
-      <path d="M 147 96 C 138 44 130 -18 124 -84 C 122 -94 130 -96 136 -88
-               C 144 -22 152 40 158 96
-               C 155 96 151 96 147 96 Z"/>
-
-      <!-- frond — up-right -->
-      <path d="M 152 100 C 176 52 204 0 234 -58 C 240 -68 246 -66 244 -58
-               C 214 2 186 54 158 110
-               C 156 107 154 104 152 100 Z"/>
-
-      <!-- frond — upper-right, arcing right -->
-      <path d="M 155 104 C 200 72 256 34 316 -12 C 322 -18 322 -12 318 -4
-               C 258 44 202 82 156 116
-               C 155 112 155 108 155 104 Z"/>
-
-      <!-- frond — right, gently downward arc -->
-      <path d="M 158 108 C 210 100 278 88 354 72 C 360 78 358 86 352 90
-               C 276 104 208 116 158 124
-               C 157 118 157 113 158 108 Z"/>
-
-      <!-- droopy frond — down-right counterpart -->
-      <path d="M 155 114 C 202 150 256 208 298 288 C 304 300 300 312 294 308
-               C 250 228 196 170 150 130
-               C 151 125 153 119 155 114 Z"/>
-
-      <!-- hanging dead frond — angled down, adds realism -->
-      <path d="M 150 118 C 148 158 142 210 128 272 C 124 286 118 286 118 274
-               C 130 212 136 160 140 122
-               C 143 120 147 118 150 118 Z"/>
-
-
-      <!-- ══════════════════════════════════════════ -->
-      <!-- RIGHT PALM — tall, slight leftward lean   -->
-      <!-- ══════════════════════════════════════════ -->
-      <!-- trunk -->
-      <path d="M 1268 700 C 1266 610 1264 490 1266 350 C 1268 220 1272 155 1276 108
-               C 1284 108 1290 155 1294 220 C 1300 310 1302 450 1300 580 L 1296 700 Z"/>
-
-      <!-- droopy frond — far down-right -->
-      <path d="M 1290 112 C 1340 148 1400 205 1474 295 C 1480 308 1476 320 1470 328
-               C 1396 242 1334 185 1284 145
-               C 1282 134 1284 124 1290 112 Z"/>
-
-      <!-- frond — right -->
-      <path d="M 1292 108 C 1352 100 1432 88 1512 72 C 1518 78 1518 86 1512 90
-               C 1432 104 1352 116 1294 122
-               C 1293 116 1292 112 1292 108 Z"/>
-
-      <!-- frond — upper-right -->
-      <path d="M 1290 104 C 1338 72 1396 32 1458 -18 C 1464 -24 1466 -18 1462 -10
-               C 1400 42 1342 82 1288 114
-               C 1289 111 1290 108 1290 104 Z"/>
-
-      <!-- frond — up-right -->
-      <path d="M 1288 100 C 1314 54 1344 0 1376 -58 C 1382 -68 1388 -68 1386 -60
-               C 1354 -2 1324 52 1290 110
-               C 1289 107 1288 104 1288 100 Z"/>
-
-      <!-- frond — nearly straight up -->
-      <path d="M 1284 96 C 1274 44 1266 -18 1260 -84 C 1258 -94 1266 -96 1272 -88
-               C 1280 -22 1288 40 1298 96
-               C 1294 96 1289 96 1284 96 Z"/>
-
-      <!-- frond — up-left -->
-      <path d="M 1280 100 C 1256 52 1228 0 1198 -58 C 1192 -68 1186 -66 1188 -58
-               C 1218 2 1246 54 1274 110
-               C 1276 107 1278 104 1280 100 Z"/>
-
-      <!-- frond — upper-left -->
-      <path d="M 1276 104 C 1232 72 1176 34 1116 -12 C 1110 -18 1110 -12 1114 -4
-               C 1174 44 1230 82 1278 116
-               C 1277 112 1277 108 1276 104 Z"/>
-
-      <!-- frond — left -->
-      <path d="M 1274 108 C 1222 100 1154 88 1078 72 C 1072 78 1074 86 1080 90
-               C 1156 104 1224 116 1274 124
-               C 1275 118 1275 113 1274 108 Z"/>
-
-      <!-- droopy frond — down-left -->
-      <path d="M 1277 114 C 1230 150 1176 208 1134 288 C 1128 300 1132 312 1138 308
-               C 1182 228 1236 170 1282 130
-               C 1280 125 1278 119 1277 114 Z"/>
-
-      <!-- hanging dead frond — down -->
-      <path d="M 1282 118 C 1284 158 1290 210 1304 272 C 1308 286 1314 286 1314 274
-               C 1302 212 1296 160 1292 122
-               C 1289 120 1286 118 1282 118 Z"/>
+      <!-- RIGHT PALM: mirror the left palm to x≈1285 -->
+      <g transform="translate(1440,0) scale(-1,1)">
+        <use href="#opalm"/>
+      </g>
 
     </g>
   </svg>
