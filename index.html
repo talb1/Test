@@ -373,83 +373,72 @@ nav.on{
 
 /* ─── SERVICES ───────────────────────────────────── */
 #services{
-  background:var(--paper);
-  padding:100px 52px;
+  background:var(--bark);
 }
-.svc-header{
-  margin-bottom:60px;
-}
-.svc-header-top{
-  display:flex;align-items:baseline;justify-content:space-between;
-  margin-bottom:10px;
-}
-.svc-header h2{
-  font-family:'Abril Fatface',serif;
-  font-size:clamp(2.4rem,4vw,4rem);
-  line-height:1;
-  color:var(--bark);
-}
-.svc-header h2 em{font-family:'Lora',serif;font-style:italic}
-.svc-header-note{
-  font-size:.82rem;line-height:1.9;
-  color:var(--mist);
-  max-width:340px;
-  text-align:right;
-}
-.svc-cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0;
-  border:1px solid var(--faint);
-}
-.svc-card{
-  padding:52px 44px 48px;
-  border-right:1px solid var(--faint);
+.svc-panel{
   position:relative;
-  transition:background .35s;
-  cursor:default;
-}
-.svc-card:last-child{border-right:none}
-.svc-card:hover{background:var(--sand)}
-.svc-card-num{
-  font-family:'Abril Fatface',serif;
-  font-size:4rem;
-  line-height:1;
-  color:var(--faint);
+  height:52vh;
+  min-height:320px;
+  overflow:hidden;
   display:block;
-  margin-bottom:32px;
-  transition:color .35s;
 }
-.svc-card:hover .svc-card-num{color:rgba(30,18,8,.08)}
-.svc-card-dur{
+.svc-panel img{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:brightness(.72) saturate(.7) sepia(.28) contrast(1.05);
+  transition:transform 1.1s cubic-bezier(.22,1,.36,1), filter .6s;
+}
+.svc-panel:hover img{
+  transform:scale(1.04);
+  filter:brightness(.78) saturate(.75) sepia(.22) contrast(1.04);
+}
+/* warm vignette on each panel */
+.svc-panel::before{
+  content:'';
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(
+    135deg,
+    rgba(30,18,8,.45) 0%,
+    transparent 60%
+  );
+}
+/* the stamp label */
+.svc-label{
+  position:absolute;
+  top:36px;right:44px;
+  z-index:2;
+  background:var(--wood, #7a5a36);
+  padding:16px 28px;
+}
+.svc-label-name{
+  font-family:'DM Sans',sans-serif;
+  font-size:.72rem;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--paper);
+  display:block;
+}
+/* bottom text strip */
+.svc-info{
+  position:absolute;
+  bottom:36px;left:44px;
+  z-index:2;
+}
+.svc-info-dur{
   font-family:'DM Sans',sans-serif;
   font-size:.54rem;letter-spacing:.24em;text-transform:uppercase;
-  color:var(--clay);
-  display:block;margin-bottom:14px;
+  color:rgba(242,232,208,.45);
+  display:block;margin-bottom:8px;
 }
-.svc-card-name{
-  font-family:'Abril Fatface',serif;
-  font-size:1.55rem;
-  line-height:1.15;
-  color:var(--bark);
-  margin-bottom:18px;
+.svc-info-desc{
+  font-family:'Lora',serif;
+  font-style:italic;
+  font-size:clamp(.9rem,1.4vw,1.15rem);
+  color:rgba(242,232,208,.7);
+  max-width:480px;
+  line-height:1.6;
 }
-.svc-card-desc{
-  font-size:.84rem;line-height:2;
-  color:var(--mist);
-}
-/* bottom clay bar on hover */
-.svc-card::after{
-  content:'';
-  position:absolute;
-  bottom:0;left:0;right:0;
-  height:3px;
-  background:var(--clay);
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform .35s cubic-bezier(.22,1,.36,1);
-}
-.svc-card:hover::after{transform:scaleX(1)}
 
 /* ─── TESTIMONIAL ────────────────────────────────── */
 #testimonial{
@@ -619,8 +608,9 @@ footer::before{
   .intro-grid,.about-inner,.test-inner,#contact{
     grid-template-columns:1fr;gap:48px;
   }
-  .svc-cards{grid-template-columns:1fr;border:none;gap:1px;background:var(--faint)}
-  .svc-card{border-right:none;border-bottom:1px solid var(--faint)}
+  .svc-panel{height:44vw;min-height:260px}
+  .svc-label{top:22px;right:22px;padding:12px 18px}
+  .svc-info{bottom:22px;left:22px}
   .about-photo{height:420px}
   .test-img{height:320px}
   .pf-grid{grid-template-columns:1fr 1fr;gap:10px}
@@ -815,31 +805,36 @@ footer::before{
 
 <!-- ═══════════════ SERVICES ═══════════════ -->
 <section id="services">
-  <div class="svc-header rv">
-    <div class="svc-header-top">
-      <h2>What I <em>offer</em></h2>
-      <p class="svc-header-note">Every session is personal. Packages are built around you — not the other way around.</p>
+  <div class="svc-panel rv">
+    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=2000&q=88" alt="Wedding ceremony"/>
+    <div class="svc-label">
+      <span class="svc-label-name">Weddings &amp; Elopements</span>
+    </div>
+    <div class="svc-info">
+      <span class="svc-info-dur">Full Day</span>
+      <p class="svc-info-desc">From the quiet morning hours to the last dance — documentary in approach, cinematic in result.</p>
     </div>
   </div>
 
-  <div class="svc-cards">
-    <div class="svc-card rv">
-      <span class="svc-card-num">01</span>
-      <span class="svc-card-dur">Full Day</span>
-      <div class="svc-card-name">Weddings &amp; Elopements</div>
-      <p class="svc-card-desc">Full-day coverage from the quiet morning hours to the last dance. Documentary in approach, cinematic in result.</p>
+  <div class="svc-panel rv">
+    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=2000&q=88" alt="Engagement portrait"/>
+    <div class="svc-label">
+      <span class="svc-label-name">Engagements &amp; Portraits</span>
     </div>
-    <div class="svc-card rv d1">
-      <span class="svc-card-num">02</span>
-      <span class="svc-card-dur">2–3 Hours</span>
-      <div class="svc-card-name">Engagements &amp; Portraits</div>
-      <p class="svc-card-desc">A relaxed session before the wedding — a chance to get comfortable together. Golden hour preferred.</p>
+    <div class="svc-info">
+      <span class="svc-info-dur">2–3 Hours</span>
+      <p class="svc-info-desc">A relaxed session before the wedding — a chance to get comfortable together. Golden hour preferred.</p>
     </div>
-    <div class="svc-card rv d2">
-      <span class="svc-card-num">03</span>
-      <span class="svc-card-dur">2 Hours</span>
-      <div class="svc-card-name">Lifestyle &amp; Maternity</div>
-      <p class="svc-card-desc">Life's most tender milestones, photographed with care and without hurry. Home sessions welcome.</p>
+  </div>
+
+  <div class="svc-panel rv">
+    <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=2000&q=88" alt="Lifestyle session"/>
+    <div class="svc-label">
+      <span class="svc-label-name">Lifestyle &amp; Maternity</span>
+    </div>
+    <div class="svc-info">
+      <span class="svc-info-dur">2 Hours</span>
+      <p class="svc-info-desc">Life's most tender milestones, photographed with care and without hurry. Home sessions welcome.</p>
     </div>
   </div>
 </section>
