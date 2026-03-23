@@ -384,6 +384,14 @@ nav:not(.on) .logo img{
 #services{
   background:var(--paper);
   padding:100px 52px;
+  position:relative;
+  overflow:hidden;
+}
+.svc-palms{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.055;
 }
 .svc-top{
   display:grid;grid-template-columns:1fr 1fr;gap:80px;
@@ -799,6 +807,87 @@ footer::before{
 
 <!-- ═══════════════ SERVICES ═══════════════ -->
 <section id="services">
+
+  <!-- palm silhouettes background -->
+  <svg class="svc-palms" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice"
+       xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+    <!-- LEFT TALL PALM -->
+    <g fill="var(--bark)">
+      <!-- trunk -->
+      <path d="M 118 700 C 120 640 116 568 112 496 C 108 424 104 352 108 286
+               C 112 220 118 162 122 116 C 125 82 126 54 124 34
+               L 128 34 C 129 54 130 83 127 118
+               C 123 165 117 224 113 290
+               C 109 357 113 430 117 502
+               C 121 574 125 646 123 700 Z"/>
+      <!-- fronds -->
+      <path d="M 125 36 C 108 20 84 6 56 -6" stroke="var(--bark)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M 124 32 C 104 14 78 -2 46 -14" stroke="var(--bark)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M 124 30 C 110 10 94 -8 74 -22" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 125 30 C 118 8 112 -14 108 -34" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 126 30 C 126 8 124 -16 120 -36" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 127 30 C 134 8 140 -14 144 -34" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 127 32 C 138 12 152 -4 170 -18" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 128 36 C 142 20 162 6 188 -4" stroke="var(--bark)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M 130 38 C 148 24 172 14 200 8" stroke="var(--bark)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- RIGHT TALL PALM -->
+    <g fill="var(--bark)">
+      <path d="M 1322 700 C 1320 638 1316 564 1312 490 C 1308 416 1305 342 1309 276
+               C 1313 210 1320 152 1325 106 C 1329 72 1330 44 1328 24
+               L 1332 24 C 1333 44 1334 73 1330 108
+               C 1325 155 1318 214 1314 280
+               C 1310 347 1313 422 1317 496
+               C 1321 570 1325 644 1323 700 Z"/>
+      <path d="M 1329 26 C 1312 10 1288 -4 1260 -16" stroke="var(--bark)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M 1328 22 C 1308 4 1282 -12 1252 -22" stroke="var(--bark)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M 1328 22 C 1314 2 1298 -16 1278 -30" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 1329 22 C 1322 0 1316 -22 1312 -42" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 1330 22 C 1330 0 1328 -20 1324 -40" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 1331 22 C 1338 0 1344 -22 1348 -42" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 1332 24 C 1343 4 1357 -12 1375 -26" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 1333 28 C 1347 12 1367 -2 1393 -12" stroke="var(--bark)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M 1334 32 C 1352 18 1376 8 1404 2" stroke="var(--bark)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- SHORTER MIDDLE-LEFT PALM -->
+    <g fill="var(--bark)">
+      <path d="M 390 700 C 391 658 389 608 387 558 C 385 508 383 456 386 410
+               C 389 364 394 322 398 290 C 401 266 402 248 400 234
+               L 403 234 C 404 248 405 267 402 292
+               C 398 325 393 368 390 414
+               C 387 461 389 514 391 564
+               C 393 614 395 664 393 700 Z"/>
+      <path d="M 400 236 C 388 224 370 214 348 206" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 400 234 C 386 220 368 208 344 200" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 400 233 C 393 216 386 196 382 178" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 401 233 C 401 215 399 196 396 178" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 402 234 C 408 216 414 196 418 178" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 402 236 C 412 222 426 212 444 206" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 403 238 C 416 226 432 218 454 214" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- SHORTER MIDDLE-RIGHT PALM -->
+    <g fill="var(--bark)">
+      <path d="M 1055 700 C 1054 660 1052 612 1050 562 C 1048 512 1047 460 1050 414
+               C 1053 368 1058 326 1062 294 C 1065 270 1066 252 1064 238
+               L 1067 238 C 1068 252 1069 271 1066 296
+               C 1062 329 1057 372 1054 418
+               C 1051 465 1052 518 1054 568
+               C 1056 618 1058 666 1056 700 Z"/>
+      <path d="M 1064 240 C 1052 228 1034 218 1012 210" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M 1064 238 C 1050 222 1032 210 1010 202" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 1064 237 C 1057 220 1050 200 1046 182" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 1065 237 C 1065 219 1063 200 1060 182" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 1066 238 C 1072 220 1078 200 1082 182" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 1066 240 C 1076 226 1090 216 1108 210" stroke="var(--bark)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 1067 242 C 1080 230 1096 222 1118 218" stroke="var(--bark)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </g>
+
+  </svg>
+
   <div class="svc-top rv">
     <h2 class="svc-h2">What I <em>offer</em></h2>
     <p class="svc-tagline">Every session is personal. Packages are built around you — not the other way around.</p>
