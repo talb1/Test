@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Rustic Moon Photo — Lydia Bogachov</title>
 <meta name="description" content="Wedding and lifestyle photography by Lydia Bogachov. Treasure Coast, Florida."/>
-<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Lato:wght@300;400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -59,12 +59,20 @@ nav.on{
   border-bottom:1px solid var(--faint);
 }
 .logo{
-  font-family:'Abril Fatface',serif;
-  font-size:1.1rem;
-  letter-spacing:.04em;
-  color:var(--bark);
+  display:block;
   opacity:0;
   animation:up .9s .4s forwards;
+}
+.logo img{
+  height:42px;
+  width:auto;
+  display:block;
+  /* invert to show on light nav bg; removed when nav is transparent over dark hero */
+  filter:brightness(0);
+  transition:filter .4s;
+}
+nav:not(.on) .logo img{
+  filter:brightness(0) invert(1);
 }
 .nav-links{
   list-style:none;display:flex;gap:32px;
@@ -128,9 +136,10 @@ nav.on{
   opacity:0;animation:up .7s .3s forwards;
 }
 .hero-name{
-  font-family:'Abril Fatface',serif;
-  font-size:clamp(3.8rem,8.5vw,9rem);
-  line-height:.92;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4.5rem,9.5vw,10.5rem);
+  font-weight:300;
+  line-height:.9;
   color:var(--paper);
   opacity:0;animation:up .9s .5s forwards;
 }
@@ -192,7 +201,7 @@ nav.on{
   position:relative;z-index:1;
 }
 .intro-quote{
-  font-family:'Abril Fatface',serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:clamp(2rem,3.5vw,3.2rem);
   line-height:1.18;
   color:var(--paper);
@@ -347,7 +356,7 @@ nav.on{
   display:block;margin-bottom:20px;
 }
 .about-h2{
-  font-family:'Abril Fatface',serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:clamp(2rem,3vw,2.9rem);
   line-height:1.1;
   color:var(--bark);
@@ -471,7 +480,7 @@ nav.on{
   pointer-events:none;
 }
 .test-mark{
-  font-family:'Abril Fatface',serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:5rem;line-height:.7;
   color:var(--clay);opacity:.35;
   display:block;margin-bottom:20px;
@@ -507,7 +516,7 @@ nav.on{
   color:var(--clay);display:block;margin-bottom:20px;
 }
 .ct-h2{
-  font-family:'Abril Fatface',serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:clamp(2.4rem,4vw,4.2rem);
   line-height:1.0;
   color:var(--bark);
@@ -566,9 +575,12 @@ footer::before{
   margin-bottom:22px;
 }
 .footer-brand-name{
-  font-family:'Abril Fatface',serif;
-  font-size:1.4rem;color:var(--paper);
-  display:block;margin-bottom:10px;
+  display:block;margin-bottom:14px;
+}
+.footer-brand-name img{
+  height:48px;width:auto;
+  filter:brightness(0) invert(1);
+  opacity:.7;
 }
 .footer-brand p{
   font-size:.76rem;line-height:1.9;
@@ -635,7 +647,9 @@ footer::before{
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="logo" href="#">Rustic Moon</a>
+  <a class="logo" href="#">
+    <img src="https://static.wixstatic.com/media/979953_a7745fc6e725463e9e320d65ffd8055e~mv2.png" alt="Rustic Moon Photo"/>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#portfolio">Work</a></li>
@@ -647,7 +661,7 @@ footer::before{
 <!-- ═══════════════ HERO ═══════════════ -->
 <section id="hero">
   <img class="hero-img"
-    src="https://images.unsplash.com/photo-1519741497674-611481863552?w=2400&q=88"
+    src="https://static.wixstatic.com/media/979953_7d2cb9a5386344f7bbc6299d7f327326~mv2.jpg"
     alt="Wedding at golden hour, Florida"/>
 
   <div class="hero-vignette"></div>
@@ -747,22 +761,22 @@ footer::before{
 
   <div class="pf-grid">
     <div class="pc pc-1 rv">
-      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1800&q=88" alt="Ceremony"/>
+      <img src="https://static.wixstatic.com/media/979953_7d2cb9a5386344f7bbc6299d7f327326~mv2.jpg" alt="Wedding"/>
     </div>
     <div class="pc pc-2 rv d1">
-      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1000&q=85" alt="Ceremony"/>
+      <img src="https://static.wixstatic.com/media/979953_5f3b59becf7242feb901874dcb28f753~mv2.jpg" alt="Portrait"/>
     </div>
     <div class="pc pc-3 rv d2">
-      <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=1000&q=85" alt="Portrait"/>
+      <img src="https://static.wixstatic.com/media/979953_1d35b5c0d3ee43e88784ce00f4bbce2f~mv2.jpg" alt="Couple"/>
     </div>
     <div class="pc pc-4 rv">
-      <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=1200&q=85" alt="Story"/>
+      <img src="https://static.wixstatic.com/media/979953_5efc584ea5fd4e32befa6125e14e0b2e~mv2.jpg" alt="Story"/>
     </div>
     <div class="pc pc-5 rv d1">
-      <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=900&q=82" alt="Details"/>
+      <img src="https://static.wixstatic.com/media/979953_fb89f93295fe47e9b28ce9d3d3daa57a~mv2.jpg" alt="Details"/>
     </div>
     <div class="pc pc-6 rv d2">
-      <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=900&q=82" alt="Couple"/>
+      <img src="https://static.wixstatic.com/media/979953_227094da664d448ba8b4ded1911da9d7~mv2.jpg" alt="Couple"/>
     </div>
   </div>
 </section>
@@ -779,7 +793,7 @@ footer::before{
   <div class="about-inner">
     <div class="about-photo-frame rv">
       <div class="about-photo">
-        <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?w=1400&q=88" alt="Lydia Bogachov"/>
+        <img src="https://static.wixstatic.com/media/979953_5efc584ea5fd4e32befa6125e14e0b2e~mv2.jpg" alt="Lydia Bogachov"/>
       </div>
       <div class="about-badge">
         <span>Stuart, Florida</span>
@@ -850,7 +864,7 @@ footer::before{
 <section id="testimonial">
   <div class="test-inner">
     <div class="test-img rv">
-      <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=88" alt="Wedding"/>
+      <img src="https://static.wixstatic.com/media/979953_1d35b5c0d3ee43e88784ce00f4bbce2f~mv2.jpg" alt="Wedding"/>
     </div>
     <div class="rv d2">
       <span class="test-mark">&ldquo;</span>
@@ -896,7 +910,9 @@ footer::before{
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="footer-brand-name">Rustic Moon</span>
+      <span class="footer-brand-name">
+        <img src="https://static.wixstatic.com/media/979953_a7745fc6e725463e9e320d65ffd8055e~mv2.png" alt="Rustic Moon Photo"/>
+      </span>
       <p>Wedding &amp; lifestyle photography by Lydia Bogachov. Treasure Coast, Florida. Available worldwide.</p>
     </div>
     <div class="footer-nav-cols">
